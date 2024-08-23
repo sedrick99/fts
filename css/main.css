@@ -45,17 +45,13 @@ header{
 }
 .hov{
     background: #52abd4;
-    padding-left: 25px;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
 
 }
-.sublist2 .sub_link:hover{
+.hov2{
     background: #52abd4;
-    margin-left: 25px;
-    transition: 1.5s;
-}
+    margin-left: 10px;
 
+}
 .item:hover .itemLink{
     padding-left: 40px;
     background-color: #57a4ca;
@@ -77,11 +73,6 @@ header{
     margin-right: 15px;
     color: white;
 }
-.sub_link{
-    display: none;
-    padding: 3px;
-
-}
 i{
     font-size: 1.5rem;
 }
@@ -89,6 +80,28 @@ i{
 .sublist i{
     padding: 0 10px 0 0;
     font-size: 1.2rem;
+} 
+.sublink{
+    height: 100%;
+    line-height: 29px;
+    font-size: 15px;
+    color: white;
+    padding-left: 50px;
+    padding-right: 20px;
+    padding-top: 5px;
+    box-sizing: border-box;
+    border-top:  1px solid rgba(228, 221, 221, 0.1);
+    border-bottom: 1px solid rgb(242, 238, 238);
+    transition: .4s;
+    list-style: none;
+    transition: all 1s;
+    text-decoration: none;
+    border-radius: 30px;
+}
+.sublink:hover{
+    background: #52abd4;
+    margin-left: 10px;
+    transition: 1.1s;
 }
 /*==================================nav-bar styling ======================================*/
 .horizontal{
@@ -529,6 +542,44 @@ select{
      background: rgb(2, 83, 246);
      
      height: 3rem;
+}
+
+.proceed{
+    width: 90%;
+    position: absolute;
+    left: 5%;
+}
+.sal{
+    border-radius: 18px ;
+    background-color:rgb(7, 125, 184);
+    box-shadow:  4px 7px rgba(0, 0, 0, 0.2), 0 6px 20px 0 ;
+    /* background-color: #52abd4; */
+    border: 3px solid white;
+    margin: 15px;
+    padding: 12px;
+    text-align: center;
+
+}
+.sal a{
+    text-decoration: none;
+    color: rgb(201, 223, 242);
+}
+.sal:hover{
+    transform: scaleX(1.06);
+    transition: 1.5s;
+}
+.error {  
+    display: none;
+    background: #57a4ca;
+    color: white;
+    padding: 10px;
+    margin: 8px;
+    border-radius: 20px;
+    width: 60%;
+    position: absolute;
+    left: 20%;
+    bottom: 1%;
+    text-align: center;
 }
 
 

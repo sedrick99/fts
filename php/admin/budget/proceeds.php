@@ -6,6 +6,11 @@ if(!isset($_SESSION['ROLE'] )) {
     header("Location: ../login.php");
     exit();
 }
+$error = '';
+if (isset($_SESSION['error'])) {
+    $error = $_SESSION['error'];
+    unset($_SESSION['error']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,11 +54,11 @@ if(!isset($_SESSION['ROLE'] )) {
     <div class="sidebar">
         <ul class="list">
             
-          <li class="item "><a href="\fts\php\admin\main-dashboard.php" class=" itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>Dashboard</a></li>
-          <li class="item hov"><a href="#" class="itemLink" onclick="toggleSubOptions()"><i class="fas fa-product" id="icon"></i>BUDGET</a>
+          <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="hov itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>Dashboard</a></li>
+          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions()"><i class="fas fa-product" id="icon"></i>BUDGET</a>
                 <ul class="sublist" id="subOptions">
                     <li class="item"><a href="addBudget.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Budget</a></li>
-                    <li class="item"><a href="viewBudget.php" class="sublink hov2"><i class="fas fa-eye" id="icon"></i>View Budget</a></li>
+                    <li class="item"><a href="viewBudget.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Budget</a></li>
                 </ul> 
                 
                 <script>
@@ -102,8 +107,83 @@ if(!isset($_SESSION['ROLE'] )) {
     </div> 
     <section>
     <a href=""><i class="fas fa-angle-left" id="icon"></i></a>
+    <h1 class="titre">proceeds</h1>
+    
+    <div class="case">
+    <div class="main-products">
+        <form class="man" method="post">
+            <h1>Add New Item</h1>
+            <label for="name">Bussiness Center</label>
+            <input type="text" id="name" name="name" placeholder="Enter Buisness Center" required>
+            <label for="amount">ammount</label>
+            <input type="number" id="amount" name="amount" placeholder="Enter Ammount" required>
+            <label for="date">Date</label>
+            <input type="datetime-local" id="date" name="date" required>
+            <button type="submit" name="add">Add</button>
+            <div id="error-message" class="error"></div>
+            <script>
+        window.onload = function() {
+            var error = "<?php echo $error; ?>";
+            if (error) {
+                document.getElementById('error-message').textContent = error;
+                document.getElementById('error-message').style.display = 'block';
+            }
+        }
+    </script>
+
+        </form>
+
+    </div>
+    </div>
+    
 
 
+    <?php
+// Database connection
+$conn = new mysqli("localhost", "root", "", "fts") or die ('connection failed');
+// Create the 'proceeds' table if it doesn't exist
+$sql = "CREATE TABLE IF NOT EXISTS proceeds (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    date DATETIME NOT NULL
+)";
+
+if ($conn->query($sql) !== TRUE) {
+    echo "Error creating table: " . $conn->error;
+}
+
+// Insert data from form into 'proceeds' table
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
+    $name = $_POST['name'];
+    $amount = $_POST['amount'];
+    $date = $_POST['date'];
+    
+    $sql = "SELECT * FROM proceeds WHERE name ='$name'";
+$result = $conn->query($sql);
+    if ($result->num_rows === 0) {
+
+    $sql = "INSERT INTO proceeds (name, amount, date) VALUES ('$name','$amount','$date')";
+
+    if ($conn->query($sql) === TRUE) {
+        $_SESSION['error'] = "Budget added succesfully";
+
+        exit();
+    }
+}else{
+    $_SESSION['error'] = "Bussines Unit Already Exist";
+
+}
+}
+
+$conn->close();
+?>
     </section>
+    <script>
+
+            function hideDanger() {
+                document.getElementById('error-message').style.display = 'none';
+            }
+        </script>
 </body>
 </html>

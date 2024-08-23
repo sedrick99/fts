@@ -33,12 +33,56 @@
     </nav>
     <div class="sidebar">
         <ul class="list">
-            <li class="item "><a href="main-dashboard.php" class="hov itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>Dashboard</a></li>
-            <li class="item"><a href="hospital-dashboard.php" class="itemLink"><i class="fas fa-hospital" id="icon"></i>HOSPITAL</a>
-                <li class="item"><a href="school-dashboard.php" class="itemLink"><i class="fas fa-school" id="icon"></i>SCHOOL</a>
-                <li class="item"><a href="users.php" class="itemLink"><i class="fas fa-users" id="icon"></i>MANAGE USERS</a>
+            
+          <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="hov itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>Dashboard</a></li>
+          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions()"><i class="fas fa-product" id="icon"></i>BUDGET</a>
+                <ul class="sublist" id="subOptions">
+                    <li class="item"><a href="addBudget.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Budget</a></li>
+                    <li class="item"><a href="viewBudget.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Budget</a></li>
+                </ul> 
+                
+                <script>
+                    let isSubOptionsVisible = false;
 
-                <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
+                    function toggleSubOptions() {
+                        const subOptions = document.getElementById("subOptions");
+                        isSubOptionsVisible = !isSubOptionsVisible;
+                        subOptions.style.display = isSubOptionsVisible ? 'block' : 'none';
+                    }
+                </script>
+            </li>
+          </li>
+          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions2()"><i class="fas fa-product" id="icon"></i>EXPENSES</a>
+                <ul class="sublist" id="subOptions2">
+                    <li class="item"><a href="expense.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Expeses</a></li>
+                    <li class="item"><a href="viewExpense.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Expenses</a></li>
+                </ul> 
+                <script>
+                   
+                   let isSubOptions2Visible = false;
+                    function toggleSubOptions2() {
+                        const subOptions = document.getElementById("subOptions2");
+                        isSubOptionsVisible = !isSubOptionsVisible;
+                        subOptions.style.display = isSubOptionsVisible ? 'block' : 'none';
+                    }
+                </script>
+          </li>
+          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions3()"><i class="fas fa-product" id="icon"></i>USERS</a>
+                <ul class="sublist" id="subOptions3">
+                    <li class="item"><a href="addUsers.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Users</a></li>
+                    <li class="item"><a href="users.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Users</a></li>
+                </ul> 
+                <script>
+                   
+                   let isSubOptions3Visible = false;
+                    function toggleSubOptions3() {
+                        const subOptions = document.getElementById("subOptions3");
+                        isSubOptions3Visible = !isSubOptions3Visible;
+                        subOptions.style.display = isSubOptions3Visible ? 'block' : 'none';
+                    }
+                </script>
+          </li>
+          <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
         </ul>
     </div> 
     <section>
