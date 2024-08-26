@@ -6,6 +6,7 @@ if(!isset($_SESSION['ROLE'] )) {
     header("Location: ../login.php");
     exit();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +19,25 @@ if(!isset($_SESSION['ROLE'] )) {
     <link rel="stylesheet" href="\fts\source\fontawesome-free-5.15.4-web\fontawesome-free-5.15.4-web\css\all.css">
     <script src="\fts\js\jquery-3.7.1.min.js"></script>
     <script src="\fts\js\chart.umd.js"></script>
+    <style>
+.success-message {
+      background-color: rgb(7, 125, 184);
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      border-radius: 4px;
+      position: fixed;
+      top: 5.4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 1;
+      transition: opacity 0.5s;
+    }
+
+    .success-message.fade-out {
+      opacity: 0;
+    }
+    </style>
 </head>
 
 <body>
@@ -41,13 +61,13 @@ if(!isset($_SESSION['ROLE'] )) {
         </script>
     </nav>
     <div class="sidebar">
-        <ul class="list">
+        <ul class="list"> 
             
-          <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>Dashboard</a></li>
-          <li class="item"><a href="#" class="hov itemLink" onclick="toggleSubOptions()"><i class="fas fa-product" id="icon"></i>BUDGET</a>
+    <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>Dashboard</a></li>
+    <li class="item"><a href="#" class="hov itemLink" onclick="toggleSubOptions()"><i class="fas fa-product" id="icon"></i>BUDGET</a>
                 <ul class="sublist" id="subOptions">
                     <li class="item"><a href="addBudget.php" class="hov sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Budget</a></li>
-                    <li class="item"><a href="viewBudget.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Budget</a></li>
+                    <li class="item"><a href="\fts\php\admin\viewBudget.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Budget</a></li>
                 </ul> 
                 
                 <script>
@@ -91,49 +111,92 @@ if(!isset($_SESSION['ROLE'] )) {
                     }
                 </script>
           </li>
-          <li class="item"><a href="\fts\php\hospital\hospital-dashboard.php" class="itemLink"><i class="fas hospital" id="icon"></i>HOSPITALS</a></li>
+          <li class="item"><a href="\fts\php\hospital\hospital-dashboard.php" class="itemLink"><i class="fas fa-hospital" id="icon"></i>HOSPITALS</a></li>
           <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
         </ul>
-    </div>  
+    </div> 
     <section>
-      <div class="proceed">
-        <h1 class="sal"><a href="budget\salaries.php">SALARIES</a></h1>
-        <h1 class="sal"><a href="budget\proceeds.php">PROCEEDS</a></h1>
-        <h1 class="sal"><a href="budget\contracts.php">FROM CONTRACTS</a></h1>
-        <h1 class="sal"><a href="budget\donations.php">DONATIONS</a></h1>
-        <h1 class="sal"><a href="budget\others.php">OTHERS</a></h1>
- 
+    <h1 class="titre">proceeds</h1>
+    <h3><a href="\fts\php\admin\vewBudget.php"></a></h3>
+    <div class="case">
+    <div class="main-products">
+        <form class="man" method="post">
+            <h1>Add New Salary</h1>
+            <label for="name"> Select Country</label>
+            <select name="name" id="">
+                <option value="">CAMEROON</option>
+                <option value="">SPAIN</option>
+            </select>
+            <label for="amount">Total Salary</label>
+            <input type="number" id="amount" name="amount" placeholder="Enter Ammount" required>
+            <label for="date">Date</label>
+            <input type="datetime-local" id="date" name="date" required>
+            <button type="submit" name="add">Add</button>
 
-      </div>
+            <script>
+        window.onload = function() {
+            var error = "<?php echo $error; ?>";
+            if (error) {
+                document.getElementById('error-message').textContent = error;
+                document.getElementById('error-message').style.display = 'block';
+            }
+        }
+    </script>
+
+        </form>
+
+    </div>
+    </div>
+    
+
+
+    <?php
+// Database connection
+$conn = new mysqli("localhost", "root", "", "fts") or die ('connection failed');
+// Create the 'proceeds' table if it doesn't exist
+$sql = "CREATE TABLE IF NOT EXISTS salaries (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    date DATETIME NOT NULL
+)";
+
+if ($conn->query($sql) !== TRUE) {
+    echo "Error creating table: " . $conn->error;
+}
+
+// Insert data from form into 'proceeds' table
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
+    $name = $_POST['name'];
+    $amount = $_POST['amount'];
+    $date = $_POST['date'];
+
+    $sql = "INSERT INTO proceeds (name, amount, date) VALUES ('$name','$amount','$date')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo '<div class="success-message" id="success-message">record addedd succesfully!</div>';
+
+        exit();
+    }
+
+}
+
+
+$conn->close();
+?>
     </section>
-    <style>
-        .proceed{
-            width: 90%;
-            position: absolute;
-            left: 5%;
-        }
-        .sal{
-            border-radius: 18px ;
-            background-color:rgb(7, 125, 184);
-            box-shadow:  4px 7px rgba(0, 0, 0, 0.2), 0 6px 20px 0 ;
-            /* background-color: #52abd4; */
-            border: 3px solid white;
-            margin: 15px;
-            padding: 12px;
-            text-align: center;
+  <script>
+    // Show the success message
+    const successMessage = document.getElementById('success-message');
+    successMessage.style.display = 'block';
 
-        }
-        .sal a{
-        
-            
-            text-decoration: none;
-            color: white;
-        }
-        .sal:hover{
-            transform: scaleX(1.06);
-            transition: 1.7s;
-            background: #52abd4;
-        }
-    </style>
+    // Fade out the success message after 3 seconds
+    setTimeout(() => {
+      successMessage.classList.add('fade-out');
+      setTimeout(() => {
+        successMessage.style.display = 'none';
+      }, 500); // Fade duration
+    }, 3000); // Display duration
+  </script>
 </body>
 </html>

@@ -43,7 +43,7 @@ if(!isset($_SESSION['ROLE'] )) {
     <div class="sidebar">
         <ul class="list">
             
-          <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="hov itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>Dashboard</a></li>
+          <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>Dashboard</a></li>
           <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions()"><i class="fas fa-product" id="icon"></i>BUDGET</a>
                 <ul class="sublist" id="subOptions">
                     <li class="item"><a href="addBudget.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Budget</a></li>
@@ -61,9 +61,9 @@ if(!isset($_SESSION['ROLE'] )) {
                 </script>
             </li>
           </li>
-          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions2()"><i class="fas fa-product" id="icon"></i>EXPENSES</a>
+          <li class="item"><a href="#" class="hov itemLink" onclick="toggleSubOptions2()"><i class="fas fa-product" id="icon"></i>EXPENSES</a>
                 <ul class="sublist" id="subOptions2">
-                    <li class="item"><a href="expense.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Expeses</a></li>
+                    <li class="item"><a href="expense.php" class="hov sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Expeses</a></li>
                     <li class="item"><a href="viewExpense.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Expenses</a></li>
                 </ul> 
                 <script>
@@ -91,6 +91,7 @@ if(!isset($_SESSION['ROLE'] )) {
                     }
                 </script>
           </li>
+          <li class="item"><a href="\fts\php\hospital\hospital-dashboard.php" class="itemLink"><i class="fas fa-hospital" id="icon"></i>HOSPITALS</a></li>
           <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
         </ul>
     </div>  
