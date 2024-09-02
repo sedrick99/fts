@@ -1,14 +1,12 @@
 <?php
 session_start();
+ include '../conect.php';
 // Check if the user is logged in and has a role set in the session
 if(!isset($_SESSION['ROLE'])) {
     header("Location: \fts\php\login.php");
     exit();
     
 }
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,9 +25,7 @@ if(!isset($_SESSION['ROLE'])) {
         }
     </style>
 </head>
-
 <body>
-    
     <nav class="horizontal">
         <header><i class="fas fa-shopping-cart"></i>HOSPITAL-DASHBOARD</header>
             <i class="fas fa-user" id="usser"  onclick="displayLog()"></i>
@@ -56,7 +52,7 @@ if(!isset($_SESSION['ROLE'])) {
             <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>MAIN DASHBOARD</a></li>'; } ?>
             <li class="item "><a href="\fts\php\hospital\hospital-dashboard.php" class="hov itemLink "><i class="fas fa-hospital" id="icon"></i>DASHBOARD</a></li> 
             <li class="item"><a href="hospital1\kizito.php" class="itemLink"><i class="fas fa-users" id="icon"></i>ST.KIZITO</a></li>
-            <li class="item"><a href="hospital2\therese.php" class="itemLink"><i class="fas fa-users" id="icon"></i>ST. THERESE</a></li>
+            <li class="item"><a href="#" class="itemLink"><i class="fas fa-users" id="icon"></i>ST. THERESE</a></li>
             <li class="item"><a href="#" class="itemLink"><i class="fas fa-users" id="icon"></i>STs ZELIE & LOUIS</a></li>
             <li class="item"><a href="#" class="itemLink"><i class="fas fa-users" id="icon"></i>hospital4</a></li>
             <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
@@ -112,9 +108,6 @@ if(!isset($_SESSION['ROLE'])) {
             </div>  
 
         </div>
- 
-
     </section>
-
 </body>
 </html>

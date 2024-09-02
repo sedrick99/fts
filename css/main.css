@@ -20,9 +20,9 @@ body{
     transition: all .5s ease;
 
 }
-header{
+headeR{
     position: absolute;
-    left: 50%;
+    left: 43%;
     top: 1rem;
     font-size: 22px;
     color: wheat;
@@ -583,5 +583,23 @@ select{
     bottom: 1%;
     text-align: center;
 }
+/* success message styling */
+.success-message {
+    background-color: rgb(7, 125, 184);
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    top: 5.4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+    transition: opacity 0.5s;
+  }
+
+  .success-message.fade-out {
+    opacity: 0;
+  }
 
 

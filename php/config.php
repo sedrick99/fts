@@ -22,6 +22,7 @@ if ($conn->query($sql) !== TRUE) {
 // Select the database
 $conn->select_db($database);
 
+
 // Create the users table if it doesn't exist
 $sql = "CREATE TABLE IF NOT EXISTS users (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -50,5 +51,25 @@ if ($result->num_rows == 0) {
     }
 }
 
+
+$sqlCreateTable = "CREATE TABLE IF NOT EXISTS hospitals (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    hospital_name VARCHAR(255) UNIQUE
+)";
+
+if ($conn->query($sqlCreateTable) !== TRUE) {
+    echo "Table 'hospitals' failed to create";
+}
+    
+    
+        $sql = "INSERT INTO hospitals (hospital_name) VALUES 
+        ('St. kizito'), 
+        ('St. Therese'), 
+        ('St. Zelie'), 
+        ('Health Center')
+        ON DUPLICATE KEY UPDATE hospital_name = hospital_name";
+        if ($conn->query($sql) !== TRUE) {
+            die("Error inserting data: " . $conn->error);
+        }
 $conn->close();
 ?>
