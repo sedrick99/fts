@@ -22,7 +22,7 @@ if(!isset($_SESSION['ROLE'] )) {
 
 <body>
     <nav class="horizontal">
-    <header>ST. THERESSE HEALTH CENTER</header>
+    <header>ST. ZELIE & LOUIS </header>
         <i class="fas fa-user" id="usser"  onclick="displayLog()"></i>
 
     <div class="user-box">

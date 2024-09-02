@@ -55,11 +55,11 @@ if(!isset($_SESSION['ROLE'])) {
             echo'
             <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>MAIN DASHBOARD</a></li>'; } ?>
             <li class="item "><a href="\fts\php\hospital\hospital-dashboard.php" class="hov itemLink "><i class="fas fa-hospital" id="icon"></i>DASHBOARD</a></li> 
-            <li class="item"><a href="hospital1\kizito.php" class="itemLink"><i class="fas fa-users" id="icon"></i>ST.KIZITO</a></li>
-            <li class="item"><a href="hospital2\therese.php" class="itemLink"><i class="fas fa-users" id="icon"></i>ST. THERESE</a></li>
-            <li class="item"><a href="#" class="itemLink"><i class="fas fa-users" id="icon"></i>STs ZELIE & LOUIS</a></li>
-            <li class="item"><a href="#" class="itemLink"><i class="fas fa-users" id="icon"></i>hospital4</a></li>
-            <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
+            <li class="item"><a href="hospital1\kizito.php" class="itemLink"></i>St.KIZITO</a></li>
+            <li class="item"><a href="hospital2\therese.php" class="itemLink"></i>St. THERESE</a></li>
+            <li class="item"><a href="hospital3\zelie.php" class="itemLink">St. ZELIE & LOUIS</a></li>
+            <li class="item"><a href="hospital4\healthCenter.php" class="itemLink">hospital4</a></li>
+            <li class="item"><a href="\fts\php\logout.php" class="itemLink"></li>
 
         </ul>
     </div> 
