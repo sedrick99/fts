@@ -32,10 +32,11 @@ if(!isset($_SESSION['ROLE'] )) {
         <i class="fas fa-user" id="usser"  onclick="displayLog()"></i>
 
     <div class="user-box">
-        <p>username<span></p>
-        <p>role</span></p>
-            <button type="submit" class="logout-btn">Log Out</button>
-            <button onclick="cancelLog()" class="cancel">X</button>
+        
+           <p class="name">Username: <span><?php echo htmlspecialchars($_SESSION['username']); ?></span></p>
+    <p class="role">Role: <span><?php echo htmlspecialchars($_SESSION['ROLE']); ?></span></p>
+    <button class="logout"><a href="/fts/php/logout.php">logout</a></button>
+    <button class="cancer" onclick="cancelLog()">X</button>
     </div>
         <script>
             function displayLog(){
@@ -104,7 +105,7 @@ if(!isset($_SESSION['ROLE'] )) {
     <section>
     <div class="head-pro">
             <h4 class="haed">MANAGE USERS</h4>
-            <button class="add"><a href="add-mem.php" style="color: white;">Add New Member</a></button>
+            <button class="add"><a href="addUsers.php" style="color: white;">Add New Member</a></button>
             </div>
           <div class="main-products">
             <div class="search">
@@ -127,8 +128,8 @@ if(!isset($_SESSION['ROLE'] )) {
                 <tr class="headth">
                     <th>id</th>
                     <th>Users</th>
-                    <th>Password</th>
                     <th>Role</th>
+                    <th>Department</th>
                     <th>Action</th>
                   </tr>
 
@@ -144,8 +145,8 @@ if(!isset($_SESSION['ROLE'] )) {
                                 <tr class="row">
                                     <td>'.$row['id'].'</td>
                                     <td>'.$row['username'].'</td>
-                                    <td>'.$row['password'].'</td>
                                     <td>'.$row['role'].'</td>
+                                    <td>'.$row['department'].'</td>
                                     <td>
                                     <button id="edit"><a href="users.php?edit='.$row['id'].'" class="edit"><i class="fas fa-edit" style="color: white;" aria-hidden="true"></i></a></button>
                                     <button id="edit"><a href="users.php?message='.$row['id'].'" class="edit"><i class="fa fa-comment" style="color: white;" aria-hidden="true"></i></a></button>

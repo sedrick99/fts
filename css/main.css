@@ -134,12 +134,13 @@ i{
     position: absolute;
     top: 5rem;
     right: 2rem;
-    background: rgba(64, 183, 246, 0.8);
+    background: rgb(45, 132, 214);
     box-shadow: var(--box-shadow);
     border-radius: .5rem;
     padding: .5rem;
     text-align: center;
-    width: 19rem;
+    width: 22rem;
+    box-shadow:  4px 7px rgba(0, 0, 0, 0.2), 0 6px 20px 0 ;
     transform-origin: top right;
     line-height: 2;
     z-index: 1;
@@ -240,7 +241,7 @@ section{
 }
 
 
-/*-=========================================-------section comtent--------====================================================*/
+/*-=========================================-------section content--------====================================================*/
 .down{
     min-height: 100%;
 }
@@ -415,6 +416,7 @@ input{
     text-align: center;
 }
 
+
 .overlay {
     display: none;
     position: fixed;
@@ -427,9 +429,10 @@ input{
 }
 
 label{
-    color: white;
-    font-size: medium;
-    margin: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
 }
 /*======================================form buttons===========================*/
 
@@ -513,14 +516,7 @@ margin: .5rem;
     flex-direction: column;
     grid-template: 1fr 1fr 1fr 1fr;
 }
-input
-select{
-    border: none;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
-    font-size: 23px;
-    background: rgb(147, 199, 225);
-}
+
 .man label{
     font-family: 'Times New Roman', Times, serif;
     font-size: 28px;
@@ -601,5 +597,26 @@ select{
   .success-message.fade-out {
     opacity: 0;
   }
+
+  /* Edit button */
+  .neww{
+    background-color: blue;
+    color: white;
+    padding: 6px;
+    margin-left: 40%;
+    text-decoration: none;
+    border-radius: 7px;
+    text-justify: auto;
+    font-size: 1.5rem;
+    
+  }
+  .neww:hover{
+    border: 2px solid black;
+}
+.titttle{
+    color: rgb(72, 72, 73);
+    font-family: verdana;
+    margin-left: 40%;
+}
 
 

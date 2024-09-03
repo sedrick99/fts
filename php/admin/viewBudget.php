@@ -28,6 +28,30 @@ if(!isset($_SESSION['ROLE'] )) {
     <script src="\fts\js\jquery-3.7.1.min.js"></script>
     <script src="\fts\js\chart.umd.js"></script>
 <style>
+      .neww{
+    background-color: blue;
+    color: white;
+    padding: 6px;
+    margin-left: 40%;
+    text-decoration: none;
+    border-radius: 7px;
+    text-justify: auto;
+    font-size: 1.25rem;
+    
+  }
+  .neww:hover{
+    border: 2px solid black;
+}
+.titttle{
+    color: rgb(72, 72, 73);
+    font-family: verdana;
+    margin-left: 40%;
+    font-size: 2rem;
+}
+.errorr{
+    color: red;
+    margin-left: 40%;
+}
 </style>
 </head>
 
@@ -37,10 +61,11 @@ if(!isset($_SESSION['ROLE'] )) {
         <i class="fas fa-user" id="usser"  onclick="displayLog()"></i>
 
     <div class="user-box">
-        <p>username<span></p>
-        <p>role</span></p>
-            <button type="submit" class="logout-btn">Log Out</button>
-            <button onclick="cancelLog()" class="cancel">X</button>
+        
+           <p class="name">Username: <span><?php echo htmlspecialchars($_SESSION['username']); ?></span></p>
+    <p class="role">Role: <span><?php echo htmlspecialchars($_SESSION['ROLE']); ?></span></p>
+    <button class="logout"><a href="/fts/php/logout.php">logout</a></button>
+    <button class="cancer" onclick="cancelLog()">X</button>
     </div>
         <script>
             function displayLog(){
@@ -111,41 +136,34 @@ if(!isset($_SESSION['ROLE'] )) {
             <h4 class="haed">Budget</h4>
             <button class="add"><a href="addBudget.php" style="color: white;">Add New Budget</a></button>
             </div>
-          <div class="main-products">
-            <div class="search">
-                <button type="submit" id="search" class="search-btn"><i class="fas fa-search"></i></button>
-                <input type="text" placeholder="search" class="text-area">
-            </div>
+            <div class="main-products">
+            <h1 class="titttle">Salaries</h1>
+            <br>
             <div class="butts">
-                <button class="copy">Copy</button>
-                <button class="copy">CSV</button>
-                <button class="copy">Excel</button>
-                <button class="copy">Print</button>
-                <br>
+                <button class="copy" onclick="copyTable('table1')">Copy</button>
+                <button class="copy"onclick="printTable('table1')">Print</button>
                 <br>
                 <hr>
             </div>
             
             <br>
-            
-            <table>
-                <tr class="headth">
-                    <th>id</th>
-                    <th>Business Unit Name</th>
-                    <th>Amount</th>
-                    <th>Date Added</th>
-                    <th>Action</th>
-
-                  </tr>
 
     <?php 
-                 include '../conect.php';
-                    $sql = "SELECT * FROM proceeds";
+                    $sql = "SELECT * FROM salaries";
                     $result = $conn->query($sql);
                     
                     if ($result->num_rows > 0) {
                       while($row = $result->fetch_assoc()) {
                                 echo '
+                                <table id="table1">
+                                <tr class="headth">
+                                  <th>id</th>
+                                  <th>contry</th>
+                                  <th>Amount</th>
+                                  <th>Date Added</th>
+                                  <th>Action</th>
+
+                                </tr>
                                 <tbody>
                                 <tr class="row">
                                     <td>'.$row['id'].'</td>
@@ -158,10 +176,73 @@ if(!isset($_SESSION['ROLE'] )) {
                                     </td>
                                     </tr>
                                     
-                            </tbody>';
+                            </tbody>
+                            </table>';
                         }
                             }else{
-                             echo 'connection failed';
+                             echo '<h1 class="errorr">No record Found</h1>';
+                            }
+                    
+                $conn->close();
+                
+                
+     ?>
+            <hr>
+            <br>
+            <a class="neww" href="budget\salaries.php"><i class="fas fa-plus"></i>Add New</a>
+       
+            </div>
+          <div class="main-products">
+            <h1 class="titttle">Proceeds</h1>
+            <br>
+            <!-- <div class="search">
+                <button type="submit" id="search" class="search-btn"><i class="fas fa-search"></i></button>
+                <input type="text" placeholder="search" class="text-area">
+            </div> -->
+            <div class="butts">
+            <button class="copy" onclick="copyTable('table2')">Copy</button>
+            <button class="copy"onclick="printTable('table2')">Print</button>
+                <br>
+                <br>
+                <hr>
+            </div>
+            
+            <br>
+
+    <?php 
+                 include '../conect.php';
+                    $sql = "SELECT * FROM proceeds";
+                    $result = $conn->query($sql);
+                    
+                    if ($result->num_rows > 0) {
+                      while($row = $result->fetch_assoc()) {
+                                echo '
+                                <table id="table2">
+                                 <tr class="headth">
+                                     <th>id</th>
+                                     <th>Business Unit Name</th>
+                                     <th>Amount</th>
+                                     <th>Date Added</th>
+                                     <th>Action</th>
+
+                                   </tr>
+                                <tbody>
+                                <tr class="row">
+                                    <td>'.$row['id'].'</td>
+                                    <td>'.$row['name'].'</td>
+                                    <td>'.$row['amount'].'</td>
+                                    <td>'.$row['date'].'</td>
+                                    <td>
+                                    <button id="edit"><a href="viewBudget.php?edit='.$row['id'].'" class="edit"><i class="fas fa-edit" style="color: white;" aria-hidden="true"></i></a></button>
+                                    <button id="del"><a href="viewBudget.php?delete=<?php echo '.$row['id'].'; ?>" class="delete" onclick="return confirm(\'Do you really want to delete this record?\');"><i class="fas fa-trash" style="color: white;" aria-hidden="true"></i></a></button>
+                                    </td>
+                                    </tr>
+                                    
+                            </tbody>
+                            </table>';
+                        }
+                            }else{
+                             echo '<h1 class="errorr">No record Found</h1>';
                             }
                     
                 $conn->close();
@@ -169,14 +250,176 @@ if(!isset($_SESSION['ROLE'] )) {
                 
    ?>
 
-            </table>
-       
+            
+            <hr>
+            <br>
+            <a class="neww" href="budget\proceeds.php"><i class="fas fa-plus"></i>Add New</a>
           </div>
           <div class="main-products">
+          <h1 class="titttle">contracts</h1>
+            <div class="butts">
+            <button class="copy" onclick="copyTable('table3')">Copy</button>
+            <button class="copy"onclick="printTable('table3')">Print</button>
+                <br>
+                <br>
+                <hr>
+            </div>
+            
+            <br>
+         <?php 
+                    include '../conect.php';
+                    $sql = "SELECT * FROM contracts";
+                    $result = $conn->query($sql);
+                    
+                    if ($result->num_rows > 0) {
+                      while($row = $result->fetch_assoc()) {
+                                echo '
+                                <table id="table3">
+             
+                                 <tr class="headth">
+                                     <th>id</th>
+                                     <th>Contract Name</th>
+                                     <th>Amount</th>
+                                     <th>Date Added</th>
+                                     <th>Action</th>
 
+                                 </tr>
+                                <tbody>
+                                <tr class="row">
+                                    <td>'.$row['id'].'</td>
+                                    <td>'.$row['name'].'</td>
+                                    <td>'.$row['amount'].'</td>
+                                    <td>'.$row['date'].'</td>
+                                    <td>
+                                    <button id="edit"><a href="viewBudget.php?edit='.$row['id'].'" class="edit"><i class="fas fa-edit" style="color: white;" aria-hidden="true"></i></a></button>
+                                    <button id="del"><a href="viewBudget.php?delete=<?php echo '.$row['id'].'; ?>" class="delete" onclick="return confirm(\'Do you really want to delete this record?\');"><i class="fas fa-trash" style="color: white;" aria-hidden="true"></i></a></button>
+                                    </td>
+                                    </tr>
+                                    
+                            </tbody>
+                            </table>';
+                        }
+                            }else{
+                             echo '<h1 class="errorr">No record Found</h1>';
+                            }
+                    
+                $conn->close();
+    ?>
+            <hr>
+            <br>
+            <a class="neww" href="budget\contracts.php"><i class="fas fa-plus"></i>Add New</a>
           </div>
-          <div class="main-products"></div>
-          <div class="main-products"></div>
+          <div class="main-products">
+          <h1 class="titttle">Donations</h1>
+            <div class="butts">
+            <button class="copy" onclick="copyTable('table4')">Copy</button>
+            <button class="copy"onclick="printTable('table4')">Print</button>
+                <br>
+                <br>
+                <hr>
+            </div>
+            
+            <br>
+         <?php 
+                 include '../conect.php';
+                    $sql = "SELECT * FROM donations";
+                    $result = $conn->query($sql);
+                    
+                    if ($result->num_rows > 0) {
+                      while($row = $result->fetch_assoc()) {
+                                echo '
+                                <table id="table4">
+             
+                                 <tr class="headth">
+                                     <th>id</th>
+                                     <th>Donation Name</th>
+                                     <th>Amount</th>
+                                     <th>Date Added</th>
+                                     <th>Action</th>
+
+                                 </tr>
+                                <tbody>
+                                <tr class="row">
+                                    <td>'.$row['id'].'</td>
+                                    <td>'.$row['name'].'</td>
+                                    <td>'.$row['amount'].'</td>
+                                    <td>'.$row['date'].'</td>
+                                    <td>
+                                    <button id="edit"><a href="viewBudget.php?edit='.$row['id'].'" class="edit"><i class="fas fa-edit" style="color: white;" aria-hidden="true"></i></a></button>
+                                    <button id="del"><a href="viewBudget.php?delete=<?php echo '.$row['id'].'; ?>" class="delete" onclick="return confirm(\'Do you really want to delete this record?\');"><i class="fas fa-trash" style="color: white;" aria-hidden="true"></i></a></button>
+                                    </td>
+                                    </tr>
+                                    
+                            </tbody>
+                            </table>';
+                        }
+                            }else{
+                             echo '<h1 class="errorr">No record Found</h1>';
+                            }
+                    
+                $conn->close();
+    ?>
+            <hr>
+            <br>
+            <a class="neww" href="budget\donations.php"><i class="fas fa-plus"></i>Add New</a>
+          </div>
+
+          <div class="main-products">
+          <h1 class="titttle">Others</h1>
+            <div class="butts">
+            <button class="copy" onclick="copyTable('table5')">Copy</button>
+            <button class="copy"onclick="printTable('table5')">Print</button>
+                <br>
+                <br>
+                <hr>
+            </div>
+            
+            <br>
+         <?php 
+                 include '../conect.php';
+                    $sql = "SELECT * FROM others";
+                    $result = $conn->query($sql);
+                    
+                    if ($result->num_rows == 0) {
+                        echo '<h1 class="errorr">No record Found</h1>';
+                    }else{
+                      while($row = $result->fetch_assoc()) {
+                                echo '
+                                <table id="table5">
+             
+                                 <tr class="headth">
+                                     <th>id</th>
+                                     <th>Other Budget</th>
+                                     <th>Amount</th>
+                                     <th>Date Added</th>
+                                     <th>Action</th>
+
+                                 </tr>
+                                <tbody>
+                                <tr class="row">
+                                    <td>'.$row['id'].'</td>
+                                    <td>'.$row['name'].'</td>
+                                    <td>'.$row['amount'].'</td>
+                                    <td>'.$row['date'].'</td>
+                                    <td>
+                                    <button id="edit"><a href="viewBudget.php?edit='.$row['id'].'" class="edit"><i class="fas fa-edit" style="color: white;" aria-hidden="true"></i></a></button>
+                                    <button id="del"><a href="viewBudget.php?delete=<?php echo '.$row['id'].'; ?>" class="delete" onclick="return confirm(\'Do you really want to delete this record?\');"><i class="fas fa-trash" style="color: white;" aria-hidden="true"></i></a></button>
+                                    </td>
+                                    </tr>
+                                    
+                            </tbody>
+                            </table>';
+                        }
+                            }
+                             
+                    
+                $conn->close();
+    ?>
+            <hr>
+            <br>
+            <a class="neww" href="budget\others.php"><i class="fas fa-plus"></i>Add New</a>
+          </div>
+          
 
     </section>
     <section class="update">
@@ -210,7 +453,6 @@ if(!isset($_SESSION['ROLE'] )) {
     document.querySelector('.update').style.display = 'none';
 }
    </script>
-</section>
 <?php
           if(isset($_GET['update'])){
             $edit_id = $_GET['edit'];
@@ -226,14 +468,30 @@ if(!isset($_SESSION['ROLE'] )) {
       }
     }
 ?>
-<?php
+</section>
 
+<script>
+    function printTable(tableId) {
+        const table = document.getElementById(tableId).outerHTML;
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write('<html><head><title>Print Table</title></head><body>');
+        printWindow.document.write(table);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+    }
 
-
-
-
-
-?>
+    function copyTable(tableId) {
+        const table = document.getElementById(tableId);
+        const range = document.createRange();
+        range.selectNode(table);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand('copy');
+        window.getSelection().removeAllRanges();
+        alert('Table copied to clipboard');
+    }
+</script>
 
 </body>
 </html>

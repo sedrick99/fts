@@ -18,12 +18,22 @@ if(!isset($_SESSION['ROLE'] )) {
     <link rel="stylesheet" href="\fts\source\fontawesome-free-5.15.4-web\fontawesome-free-5.15.4-web\css\all.css">
     <script src="\fts\js\jquery-3.7.1.min.js"></script>
     <script src="\fts\js\chart.umd.js"></script>
-    <!-- <style>
-        .sublink{
-            display: none;
-            padding-left: 15px;
+    <style>
+        .sava{
+            padding: 5px;
+            border-radius: 1rem;
+            margin: 1rem;
+            background: blue;
+            font-size: 2rem;
+            width: 20%;
+            color: white;
+
         }
-    </style> -->
+        .sava:hover{
+             transform: scale(0.93);
+             transition: .7s;
+        }
+    </style>
 </head>
 
 <body>
@@ -32,10 +42,11 @@ if(!isset($_SESSION['ROLE'] )) {
         <i class="fas fa-user" id="usser"  onclick="displayLog()"></i>
 
     <div class="user-box">
-        <p>username<span></p>
-        <p>role</span></p>
-            <button type="submit" class="logout-btn">Log Out</button>
-            <button onclick="cancelLog()" class="cancel">X</button>
+        
+           <p class="name">Username: <span><?php echo htmlspecialchars($_SESSION['username']); ?></span></p>
+    <p class="role">Role: <span><?php echo htmlspecialchars($_SESSION['ROLE']); ?></span></p>
+    <button class="logout"><a href="/fts/php/logout.php">logout</a></button>
+    <button class="cancer" onclick="cancelLog()">X</button>
     </div>
         <script>
             function displayLog(){
@@ -102,7 +113,49 @@ if(!isset($_SESSION['ROLE'] )) {
         </ul>
     </div> 
     <section>
+        <br>
+    <div class="head-pro">
+        <button class="add"><a href="users.php" style="color: white;">view all users</a></button>
+    </div>
+    <div class="main-products">
+        <h1 class="titttle">Add User</h1>
+        <form action="add-user.php" method="POST" id="editForm" style="display: grid;">
+            <label >Name:</label>
+            <input type="text" id="name" name="Name" placeholder="enter new members name" required>
+            <label >password:</label>
+            <input type="text" id="pass" name="Pass" placeholder="assign passsword to user" required>
+            <label >Role:</label>
+            <select name="Role" style="height: 3rem;">
+                <option value="admin">admin</option>
+                <option value="matron">matron</option>
+                <option value="pharmacist">pharmacist</option>
+                <option value="accountant">accountant</option>
+            </select>
+            <label >department</label>
+            <select name="dep" id="hospitals">
+            <?php
+            $conn = new mysqli("localhost", "root", "", "fts") or die ('connection failed');
+            // SQL query to select hospital names
+            $sql = "SELECT hospital_name FROM hospitals"; // Assuming hospital_id is a unique identifier
+            $result = $conn->query($sql);
 
-    </section>
+            // Check if there are results and fetch them
+            if ($result->num_rows > 0) {
+                // Output data of each row
+                while ($row = $result->fetch_assoc()) {
+                    echo '<option value="' . htmlspecialchars($row['hospital_name']) . '">' . htmlspecialchars($row['hospital_name']) . '</option>';
+                }
+            } else {
+                echo '<option value="">No hospitals found</option>';
+            }
+
+            // Close the connection
+            $conn->close();
+            ?>
+        </select>
+            <button type="submit" name="submit" class="sava" >Save</button>
+        </form>
+    </div>
+   </section>
 </body>
 </html>

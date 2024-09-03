@@ -24,19 +24,22 @@ if ($result->num_rows > 0) {
     if (password_verify($pass, $row['password'])) {
         $_SESSION['username'] = $user;
         $_SESSION['ROLE'] = $row['role'];
+        $_SESSION['department'] = $row['department'];
         
         // Redirect to dashboard based on role
-    if ($_SESSION['ROLE'] == 'admin' || $_SESSION['ROLE'] == 'ceo') {
-        $_SESSION['username'] = $_POST['username'];
+
+        if ($_SESSION['ROLE'] == 'admin') {
         header('location: \fts\php\admin\main-dashboard.php');
-    }elseif($_SESSION['ROLE'] == 'principal' || $_SESSION['ROLE'] == 'busar' ||$_SESSION['ROLE'] == 'store-accountant') {
-        $_SESSION['username'] = $_POST['username'];
-        header('location: \fts\php\school\school-dashboard.php');
-    }elseif($_SESSION['ROLE'] == 'matron' || $_SESSION['ROLE'] == 'pharmacist' ||$_SESSION['ROLE'] == 'accountant') {
-        $_SESSION['username'] = $_POST['username'];
-        header('location: \fts\php\hospital\hospital-dashboard.php');
-    } else {
-   // Login failed
+    }elseif($_SESSION['department'] == 'St. Therese') {
+        header('location: \fts\php\hospital\hospital2\therese.php');
+    }elseif($_SESSION['department'] == 'St. Zelie') {
+        header('location: \fts\php\hospital\hospital3\zelie.php');
+    } elseif($_SESSION['department'] == 'St. kizito') {
+        header('location: \fts\php\hospital\hospital1\kizito.php');
+    }elseif($_SESSION['department'] == 'Health Center') {
+        header('location: \fts\php\hospital\hospital4\healCenter.php');
+    }else{
+     // Login failed
         echo "no role assigned";
     }
         exit();

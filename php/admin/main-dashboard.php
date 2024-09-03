@@ -32,10 +32,10 @@ if(!isset($_SESSION['ROLE'] )) {
         <i class="fas fa-user" id="usser"  onclick="displayLog()"></i>
 
     <div class="user-box">
-        <p>username<span></p>
-        <p>role</span></p>
-            <button type="submit" class="logout-btn">Log Out</button>
-            <button onclick="cancelLog()" class="cancel">X</button>
+    <p class="name">Username: <span><?php echo htmlspecialchars($_SESSION['username']); ?></span></p>
+    <p class="role">Role: <span><?php echo htmlspecialchars($_SESSION['ROLE']); ?></span></p>
+    <button class="logout"><a href="/fts/php/logout.php">logout</a></button>
+    <button class="cancer" onclick="cancelLog()">X</button>
     </div>
         <script>
             function displayLog(){

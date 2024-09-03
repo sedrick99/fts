@@ -6,9 +6,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["Name"];
     $hashedPassword = password_hash($_POST["Pass"], PASSWORD_DEFAULT);
     $role = $_POST["Role"];
-
+    $dep = $_POST["dep"];
     // Insert user data into the database
-    $sql = "INSERT INTO users (username, password, role) VALUES ('$username', '$password', '$role')";
+    $sql = "INSERT INTO users (username, password, role, department) VALUES ('$username', '$hashedPassword', '$role', '$dep')";
     
     if ($conn->query($sql) === TRUE) {
         header("location: users.php");

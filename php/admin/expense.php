@@ -26,10 +26,11 @@ if(!isset($_SESSION['ROLE'] )) {
         <i class="fas fa-user" id="usser"  onclick="displayLog()"></i>
 
     <div class="user-box">
-        <p>username<span></p>
-        <p>role</span></p>
-            <button type="submit" class="logout-btn">Log Out</button>
-            <button onclick="cancelLog()" class="cancel">X</button>
+        
+           <p class="name">Username: <span><?php echo htmlspecialchars($_SESSION['username']); ?></span></p>
+    <p class="role">Role: <span><?php echo htmlspecialchars($_SESSION['ROLE']); ?></span></p>
+    <button class="logout"><a href="/fts/php/logout.php">logout</a></button>
+    <button class="cancer" onclick="cancelLog()">X</button>
     </div>
         <script>
             function displayLog(){
@@ -97,7 +98,7 @@ if(!isset($_SESSION['ROLE'] )) {
     </div>  
     <section>
       <div class="proceed">
-        <h1 class="sal"><a href="">CAPITAL EXPENDITURE</a></h1>
+        <h1 class="sal"><a href="\fts\php\admin\expenses\expenditure.php">CAPITAL EXPENDITURE</a></h1>
         <h1 class="sal"><a href="">PURCHASE OF MATERIALS</a></h1>
         <h1 class="sal"><a href="">TRANSPORT COST</a></h1>
         <h1 class="sal"><a href="">EXTERNAL SERVICE A</a></h1>
@@ -113,35 +114,7 @@ if(!isset($_SESSION['ROLE'] )) {
 
 
       </div>
-      <style>
-        .proceed{
-            width: 90%;
-            position: absolute;
-            left: 5%;
-        }
-        .sal{
-            border-radius: 18px ;
-            background-color:rgb(7, 125, 184);
-            box-shadow:  4px 7px rgba(0, 0, 0, 0.2), 0 6px 20px 0 ;
-            /* background-color: #52abd4; */
-            border: 3px solid white;
-            margin: 15px;
-            padding: 12px;
-            text-align: center;
 
-        }
-        .sal a{
-        
-            
-            text-decoration: none;
-            color: white;
-        }
-        .sal:hover{
-            transform: scaleX(1.06);
-            transition: 1.7s;
-            background: #52abd4;
-        }
-    </style>
     </section>
 </body>
 </html>

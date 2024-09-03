@@ -6,6 +6,7 @@ if(!isset($_SESSION['ROLE'] )) {
     header("Location: ../login.php");
     exit();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,11 +19,30 @@ if(!isset($_SESSION['ROLE'] )) {
     <link rel="stylesheet" href="\fts\source\fontawesome-free-5.15.4-web\fontawesome-free-5.15.4-web\css\all.css">
     <script src="\fts\js\jquery-3.7.1.min.js"></script>
     <script src="\fts\js\chart.umd.js"></script>
+    <style>
+.success-message {
+      background-color: rgb(7, 125, 184);
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      border-radius: 4px;
+      position: fixed;
+      top: 5.4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 1;
+      transition: opacity 0.5s;
+    }
+
+    .success-message.fade-out {
+      opacity: 0;
+    }
+    </style>
 </head>
 
 <body>
     <nav class="horizontal">
-    <header>St. KIZITO HEALTH CENTER</header>
+    <header><i class="fas fa-shopping-cart"></i>F.T.S</header>
         <i class="fas fa-user" id="usser"  onclick="displayLog()"></i>
 
     <div class="user-box">
@@ -42,15 +62,13 @@ if(!isset($_SESSION['ROLE'] )) {
         </script>
     </nav>
     <div class="sidebar">
-        <ul class="list">
-        <?php if($_SESSION['ROLE'] == 'admin' || $_SESSION['ROLE'] == 'ceo') {
-            echo'
-            <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>MAIN DASHBOARD</a></li>'; } ?>
-          <li class="item "><a href="\fts\php\hospital\hospital1\kizito.php" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>Dashboard</a></li>
-          <li class="item"><a href="#" class="hov itemLink" onclick="toggleSubOptions()"><i class="fas fa-product" id="icon"></i>RECORDS</a>
+        <ul class="list"> 
+            
+    <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>Dashboard</a></li>
+    <li class="item"><a href="#" class="hov itemLink" onclick="toggleSubOptions()"><i class="fas fa-product" id="icon"></i>BUDGET</a>
                 <ul class="sublist" id="subOptions">
-                    <li class="item"><a href="\fts\php\hospital\hospital1\add-card.php" class="hov sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Record</a></li>
-                    <li class="item"><a href="\fts\php\hospital\hospital1\view-card.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Record</a></li>
+                    <li class="item"><a href="\fts\php\admin\addBudget.php" class="hov sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Budget</a></li>
+                    <li class="item"><a href="\fts\php\admin\viewBudget.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Budget</a></li>
                 </ul> 
                 
                 <script>
@@ -66,8 +84,8 @@ if(!isset($_SESSION['ROLE'] )) {
           </li>
           <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions2()"><i class="fas fa-product" id="icon"></i>EXPENSES</a>
                 <ul class="sublist" id="subOptions2">
-                    <li class="item"><a href="\fts\php\hospital\hospital1\expense.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Expeses</a></li>
-                    <li class="item"><a href="\fts\php\hospital\hospital1\viewExpense.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Expenses</a></li>
+                    <li class="item"><a href="\fts\php\admin\expense.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Expeses</a></li>
+                    <li class="item"><a href="\fts\php\admin\viewExpense.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Expenses</a></li>
                 </ul> 
                 <script>
                    
@@ -79,21 +97,35 @@ if(!isset($_SESSION['ROLE'] )) {
                     }
                 </script>
           </li>
-          <li class="item"><a href="\fts\php\hospital\hospital1\balance.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>Account Balance</a></li>
+          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions3()"><i class="fas fa-product" id="icon"></i>USERS</a>
+                <ul class="sublist" id="subOptions3">
+                    <li class="item"><a href="\fts\php\admin\addUsers.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Users</a></li>
+                    <li class="item"><a href="\fts\php\admin\users.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Users</a></li>
+                </ul> 
+                <script>
+                   
+                   let isSubOptions3Visible = false;
+                    function toggleSubOptions3() {
+                        const subOptions = document.getElementById("subOptions3");
+                        isSubOptions3Visible = !isSubOptions3Visible;
+                        subOptions.style.display = isSubOptions3Visible ? 'block' : 'none';
+                    }
+                </script>
+          </li>
+          <li class="item"><a href="\fts\php\hospital\hospital-dashboard.php" class="itemLink"><i class="fas fa-hospital" id="icon"></i>HOSPITALS</a></li>
           <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
-
         </ul>
     </div> 
-  <section>
-    <h3><a href="\fts\php\hospital\hospital1\vew-card.php"></a></h3>
+    <section>
+    <h3><a href="\fts\php\admin\vewBudget.php"></a></h3>
     <div class="case">
     <div class="main-products">
         <form class="man" method="post">
-            <h1>Add New ANC</h1>
-            <label for="name">Paitient's Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter customer name" required>
-            <label for="amount">Card price</label>
-            <input type="number" id="amount" name="amount" placeholder="Enter card price" required>
+            <h1>Add New Capital expenditure</h1>
+            <label for="name">Expenditure Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter Buisness Center" required>
+            <label for="amount">ammount</label>
+            <input type="number" id="amount" name="amount" placeholder="Enter Ammount" required>
             <label for="date">Date</label>
             <input type="datetime-local" id="date" name="date" required>
             <button type="submit" name="add">Add</button>
@@ -119,16 +151,14 @@ if(!isset($_SESSION['ROLE'] )) {
 // Database connection
 $conn = new mysqli("localhost", "root", "", "fts") or die ('connection failed');
 // Create the 'proceeds' table if it doesn't exist
-$sql = "CREATE TABLE IF NOT EXISTS anc (
+$sql = "CREATE TABLE IF NOT EXISTS expenditure (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
-    date DATETIME NOT NULL,
-    hospital_id INT(10) NOT NULL,
-    FOREIGN KEY (hospital_id) REFERENCES hospitals(id)
+    date DATETIME NOT NULL
 )";
 
-if($conn->query($sql) !== TRUE) {
+if ($conn->query($sql) !== TRUE) {
     echo "Error creating table: " . $conn->error;
 }
 
@@ -137,30 +167,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
     $name = $_POST['name'];
     $amount = $_POST['amount'];
     $date = $_POST['date'];
-    $hospital_id = 1;
-    
-    $sql = "SELECT * FROM anc WHERE name ='$name'";
-$result = $conn->query($sql);
-    if ($result->num_rows === 0) {
 
-    $sql = "INSERT INTO anc (name, amount, date, hospital_id) VALUES ('$name','$amount','$date', '$hospital_id')";
+    $sql = "INSERT INTO expenditure (name, amount, date) VALUES ('$name','$amount','$date')";
 
     if ($conn->query($sql) === TRUE) {
-        echo '<div class="success-message" id="success-message">record added successfully!</div>';
+        echo '<div class="success-message" id="success-message">Expenditure added successfully!</div>';
 
         exit();
     }
-}else{
-
-    $sql = "UPDATE anc SET amount = '$amount' WHERE name = '$name'";
-    if ($conn->query($sql) === TRUE) {
-        echo '<div class="success-message" id="success-message">Name Already exists! Amount updated.</div>';
-    }
-}
 }
 
 $conn->close();
 ?>
+    </section>
   <script>
     // Show the success message
     const successMessage = document.getElementById('success-message');
@@ -174,7 +193,5 @@ $conn->close();
       }, 500); // Fade duration
     }, 3000); // Display duration
   </script>
-  </section>
-
 </body>
 </html>
