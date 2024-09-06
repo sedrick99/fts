@@ -137,10 +137,10 @@ if(!isset($_SESSION['ROLE'] )) {
     <div class="case">
     <div class="main-products">
         <form class="man" method="post">
-            <h1>Add New Capital expenditure</h1>
-            <label for="name">Expenditure Name</label>
+            <h1>Add New Tax</h1>
+            <label for="name">Tax Name</label>
             <input type="text" id="name" name="name" placeholder="Enter Buisness Center" required>
-            <label for="amount">Ammount spent</label>
+            <label for="amount">Ammount Paid</label>
             <input type="number" id="amount" name="amount" placeholder="Enter Ammount" required>
             <label for="date">Date</label>
             <input type="datetime-local" id="date" name="date" required>

@@ -98,19 +98,19 @@ if(!isset($_SESSION['ROLE'] )) {
     </div>  
     <section>
       <div class="proceed">
-        <h1 class="sal"><a href="\fts\php\admin\expenses\expenditure.php">CAPITAL EXPENDITURE</a></h1>
-        <h1 class="sal"><a href="">PURCHASE OF MATERIALS</a></h1>
-        <h1 class="sal"><a href="">TRANSPORT COST</a></h1>
-        <h1 class="sal"><a href="">EXTERNAL SERVICE A</a></h1>
-        <h1 class="sal"><a href="">EXTERNAL SERVICE B</a></h1>
-        <h1 class="sal"><a href="">RATES AND TAXES </a></h1>
-        <h1 class="sal"><a href="">ALLOWANCES</a></h1>
-        <h1 class="sal"><a href="">CAPACITY BUILDING</a></h1>
-        <h1 class="sal"><a href="">OTHER EXPENCES</a></h1>
-        <h1 class="sal"><a href="">CREDITORS</a></h1>
-        <h1 class="sal"><a href="">DEPRECIATION</a></h1>
-        <h1 class="sal"><a href="">PLOUGH BACKS 20%</a></h1>
-        <h1 class="sal"><a href="">TOTAL EXPENCE</a></h1>
+        <h1 class="sal"><a href="expenses\expenditure.php">CAPITAL EXPENDITURE</a></h1>
+        <h1 class="sal"><a href="expenses\materials.php">PURCHASE OF MATERIALS</a></h1>
+        <h1 class="sal"><a href="expenses\transport.php">TRANSPORT COST</a></h1>
+        <h1 class="sal"><a href="expenses\EservicesA.php">EXTERNAL SERVICE A</a></h1>
+        <h1 class="sal"><a href="expenses\EservicesB.php">EXTERNAL SERVICE B</a></h1>
+        <h1 class="sal"><a href="expenses\taxes.php">RATES AND TAXES </a></h1>
+        <h1 class="sal"><a href="expenses\allowance.php">ALLOWANCES</a></h1>
+        <h1 class="sal"><a href="expenses\cbuilding.php">CAPACITY BUILDING</a></h1>
+        <h1 class="sal"><a href="expenses\others.php">OTHER EXPENCES</a></h1>
+        <h1 class="sal"><a href="expenses\creditors.php">CREDITORS</a></h1>
+        <h1 class="sal"><a href="expenses\depreciation.php">DEPRECIATION</a></h1>
+        <h1 class="sal"><a href="expenses\plough.php">PLOUGH BACKS 20%</a></h1>
+        <h1 class="sal"><a href="expenses\total.php">TOTAL EXPENCE</a></h1>
 
 
       </div>

@@ -18,12 +18,8 @@ if(!isset($_SESSION['ROLE'] )) {
     <link rel="stylesheet" href="\fts\source\fontawesome-free-5.15.4-web\fontawesome-free-5.15.4-web\css\all.css">
     <script src="\fts\js\jquery-3.7.1.min.js"></script>
     <script src="\fts\js\chart.umd.js"></script>
-    <!-- <style>
-        .sublink{
-            display: none;
-            padding-left: 15px;
-        }
-    </style> -->
+    <style>
+    </style>
 </head>
 
 <body>

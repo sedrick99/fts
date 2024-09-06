@@ -141,7 +141,9 @@ if(!isset($_SESSION['ROLE'] )) {
             <br>
             <div class="butts">
                 <button class="copy" onclick="copyTable('table1')">Copy</button>
+                <button  class="copy" onclick="exportToExcel('table1')">Excel</button>
                 <button class="copy"onclick="printTable('table1')">Print</button>
+                <br>
                 <br>
                 <hr>
             </div>
@@ -151,7 +153,10 @@ if(!isset($_SESSION['ROLE'] )) {
     <?php 
                     $sql = "SELECT * FROM salaries";
                     $result = $conn->query($sql);
-                    
+                    if ($result === false) {
+                        // If the table does not exist or any other error, show "No record found"
+                        echo '<h1 class="errorr">No record Found</h1>';
+                    } else {
                     if ($result->num_rows > 0) {
                       while($row = $result->fetch_assoc()) {
                                 echo '
@@ -182,6 +187,7 @@ if(!isset($_SESSION['ROLE'] )) {
                             }else{
                              echo '<h1 class="errorr">No record Found</h1>';
                             }
+                        }
                     
                 $conn->close();
                 
@@ -201,6 +207,7 @@ if(!isset($_SESSION['ROLE'] )) {
             </div> -->
             <div class="butts">
             <button class="copy" onclick="copyTable('table2')">Copy</button>
+            <button  class="copy" onclick="exportToExcel('table2')">Excel</button>
             <button class="copy"onclick="printTable('table2')">Print</button>
                 <br>
                 <br>
@@ -213,7 +220,10 @@ if(!isset($_SESSION['ROLE'] )) {
                  include '../conect.php';
                     $sql = "SELECT * FROM proceeds";
                     $result = $conn->query($sql);
-                    
+                    if ($result === false) {
+                        // If the table does not exist or any other error, show "No record found"
+                        echo '<h1 class="errorr">No record Found</h1>';
+                    } else {
                     if ($result->num_rows > 0) {
                       while($row = $result->fetch_assoc()) {
                                 echo '
@@ -244,6 +254,7 @@ if(!isset($_SESSION['ROLE'] )) {
                             }else{
                              echo '<h1 class="errorr">No record Found</h1>';
                             }
+                        }
                     
                 $conn->close();
                 
@@ -259,6 +270,7 @@ if(!isset($_SESSION['ROLE'] )) {
           <h1 class="titttle">contracts</h1>
             <div class="butts">
             <button class="copy" onclick="copyTable('table3')">Copy</button>
+            <button  class="copy" onclick="exportToExcel('table3')">Excel</button>
             <button class="copy"onclick="printTable('table3')">Print</button>
                 <br>
                 <br>
@@ -270,7 +282,10 @@ if(!isset($_SESSION['ROLE'] )) {
                     include '../conect.php';
                     $sql = "SELECT * FROM contracts";
                     $result = $conn->query($sql);
-                    
+                    if ($result === false) {
+                        // If the table does not exist or any other error, show "No record found"
+                        echo '<h1 class="errorr">No record Found</h1>';
+                    } else {
                     if ($result->num_rows > 0) {
                       while($row = $result->fetch_assoc()) {
                                 echo '
@@ -302,7 +317,7 @@ if(!isset($_SESSION['ROLE'] )) {
                             }else{
                              echo '<h1 class="errorr">No record Found</h1>';
                             }
-                    
+                        }
                 $conn->close();
     ?>
             <hr>
@@ -313,6 +328,7 @@ if(!isset($_SESSION['ROLE'] )) {
           <h1 class="titttle">Donations</h1>
             <div class="butts">
             <button class="copy" onclick="copyTable('table4')">Copy</button>
+            <button  class="copy" onclick="exportToExcel('table4')">Excel</button>
             <button class="copy"onclick="printTable('table4')">Print</button>
                 <br>
                 <br>
@@ -324,7 +340,10 @@ if(!isset($_SESSION['ROLE'] )) {
                  include '../conect.php';
                     $sql = "SELECT * FROM donations";
                     $result = $conn->query($sql);
-                    
+                    if ($result === false) {
+                        // If the table does not exist or any other error, show "No record found"
+                        echo '<h1 class="errorr">No record Found</h1>';
+                    } else {
                     if ($result->num_rows > 0) {
                       while($row = $result->fetch_assoc()) {
                                 echo '
@@ -355,7 +374,8 @@ if(!isset($_SESSION['ROLE'] )) {
                         }
                             }else{
                              echo '<h1 class="errorr">No record Found</h1>';
-                            }
+                        }
+                    }
                     
                 $conn->close();
     ?>
@@ -368,6 +388,7 @@ if(!isset($_SESSION['ROLE'] )) {
           <h1 class="titttle">Others</h1>
             <div class="butts">
             <button class="copy" onclick="copyTable('table5')">Copy</button>
+            <button  class="copy" onclick="exportToExcel('table5')">Excel</button>
             <button class="copy"onclick="printTable('table5')">Print</button>
                 <br>
                 <br>
@@ -379,6 +400,14 @@ if(!isset($_SESSION['ROLE'] )) {
                  include '../conect.php';
                     $sql = "SELECT * FROM others";
                     $result = $conn->query($sql);
+                    $sql = "SELECT * FROM others";
+                    $result = $conn->query($sql);
+
+// Check if the query was successful
+                    if ($result === false) {
+                        // If the table does not exist or any other error, show "No record found"
+                        echo '<h1 class="errorr">No record Found</h1>';
+                    } else {
                     
                     if ($result->num_rows == 0) {
                         echo '<h1 class="errorr">No record Found</h1>';
@@ -412,7 +441,7 @@ if(!isset($_SESSION['ROLE'] )) {
                         }
                             }
                              
-                    
+                        }
                 $conn->close();
     ?>
             <hr>
@@ -491,7 +520,15 @@ if(!isset($_SESSION['ROLE'] )) {
         window.getSelection().removeAllRanges();
         alert('Table copied to clipboard');
     }
+    function exportToExcel(tableId) {
+        const table = document.getElementById(tableId);
+        const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+        XLSX.writeFile(wb, `${tableId}.xlsx`);
+        alert("The Excel file has been downloaded. Please open it with Microsoft Excel.");
+    }
+
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 
 </body>
 </html>

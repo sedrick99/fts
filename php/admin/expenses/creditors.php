@@ -137,10 +137,10 @@ if(!isset($_SESSION['ROLE'] )) {
     <div class="case">
     <div class="main-products">
         <form class="man" method="post">
-            <h1>Add New Capital expenditure</h1>
-            <label for="name">Expenditure Name</label>
+            <h1>Add New Creditor</h1>
+            <label for="name">Creditor's Name</label>
             <input type="text" id="name" name="name" placeholder="Enter Buisness Center" required>
-            <label for="amount">Ammount spent</label>
+            <label for="amount">Ammount Credited</label>
             <input type="number" id="amount" name="amount" placeholder="Enter Ammount" required>
             <label for="date">Date</label>
             <input type="datetime-local" id="date" name="date" required>
@@ -167,7 +167,7 @@ if(!isset($_SESSION['ROLE'] )) {
 // Database connection
 $conn = new mysqli("localhost", "root", "", "fts") or die ('connection failed');
 // Create the 'proceeds' table if it doesn't exist
-$sql = "CREATE TABLE IF NOT EXISTS expenditure (
+$sql = "CREATE TABLE IF NOT EXISTS creditors (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
@@ -184,10 +184,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
     $amount = $_POST['amount'];
     $date = $_POST['date'];
 
-    $sql = "INSERT INTO expenditure (name, amount, date) VALUES ('$name','$amount','$date')";
+    $sql = "INSERT INTO creditors (name, amount, date) VALUES ('$name','$amount','$date')";
 
     if ($conn->query($sql) === TRUE) {
-        echo '<div class="success-message" id="success-message">Expenditure added successfully!</div>';
+        echo '<div class="success-message" id="success-message">creditors added successfully!</div>';
 
         exit();
     }
