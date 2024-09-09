@@ -10,7 +10,7 @@ if(!isset($_SESSION['ROLE'] )) {
      //delete products from database
      if(isset($_GET['delete'])){
         $delete_id = $_GET['delete'];
-        mysqli_query($conn, "DELETE FROM proceeds WHERE id = '$delete_id'") or die('query failed');
+        mysqli_query($conn, "DELETE FROM materials WHERE id = '$delete_id'") or die('query failed');
         
            header('location: viewBudget.php'); 
        }
@@ -162,7 +162,7 @@ if(!isset($_SESSION['ROLE'] )) {
     <?php 
                     $sql = "SELECT * FROM expenditure";
                     $result = $conn->query($sql);
-                    if ($result === false) {
+                    if ($result === true) {
                         // If the table does not exist or any other error, show "No record found"
                         echo '<h1 class="errorr">No record Found</h1>';
                     } else {
@@ -175,14 +175,10 @@ if(!isset($_SESSION['ROLE'] )) {
                                     <td>'.$row['name'].'</td>
                                     <td>'.$row['amount'].'</td>
                                     <td>'.$row['date'].'</td>
-                                    <td>
-                                    <button id="edit"><a href="viewBudget.php?edit='.$row['id'].'" class="edit"><i class="fas fa-edit" style="color: white;" aria-hidden="true"></i></a></button>
-                                    <button id="del"><a href="viewBudget.php?delete=<?php echo '.$row['id'].'; ?>" class="delete" onclick="return confirm(\'Do you really want to delete this record?\');"><i class="fas fa-trash" style="color: white;" aria-hidden="true"></i></a></button>
-                                    </td>
-                                    </tr>
+                                    
                                     
                             </tbody>
-                            </table>';
+                            ';
                         }
                             }else{
                              echo '<h1 class="errorr">No record Found</h1>';
@@ -193,13 +189,14 @@ if(!isset($_SESSION['ROLE'] )) {
                 
                 
      ?>
+            </table>
             <hr>
             <br>
             <a class="neww" href="budget\expenditure.php"><i class="fas fa-plus"></i>Add New</a>
        
             </div>
           <div class="main-products">
-            <h1 class="titttle">Proceeds</h1>
+            <h1 class="titttle">materials</h1>
             <br>
             <!-- <div class="search">
                 <button type="submit" id="search" class="search-btn"><i class="fas fa-search"></i></button>
@@ -216,7 +213,7 @@ if(!isset($_SESSION['ROLE'] )) {
             <table id="table2">
                                  <tr class="headth">
                                      <th>id</th>
-                                     <th>Business Unit Name</th>
+                                     <th>Raw Material</th>
                                      <th>Amount</th>
                                      <th>Date Added</th>
                                      <th>Action</th>
@@ -227,7 +224,7 @@ if(!isset($_SESSION['ROLE'] )) {
 
     <?php 
                  include '../conect.php';
-                    $sql = "SELECT * FROM proceeds";
+                    $sql = "SELECT * FROM materials";
                     $result = $conn->query($sql);
                     if ($result === false) {
                         // If the table does not exist or any other error, show "No record found"
@@ -236,21 +233,18 @@ if(!isset($_SESSION['ROLE'] )) {
                     if ($result->num_rows > 0) {
                       while($row = $result->fetch_assoc()) {
                                 echo '
-                               
                                 <tbody>
                                 <tr class="row">
                                     <td>'.$row['id'].'</td>
                                     <td>'.$row['name'].'</td>
                                     <td>'.$row['amount'].'</td>
                                     <td>'.$row['date'].'</td>
-                                    <td>
                                     <button id="edit"><a href="viewBudget.php?edit='.$row['id'].'" class="edit"><i class="fas fa-edit" style="color: white;" aria-hidden="true"></i></a></button>
                                     <button id="del"><a href="viewBudget.php?delete=<?php echo '.$row['id'].'; ?>" class="delete" onclick="return confirm(\'Do you really want to delete this record?\');"><i class="fas fa-trash" style="color: white;" aria-hidden="true"></i></a></button>
                                     </td>
                                     </tr>
                                     
-                            </tbody>
-                            </table>';
+                            </tbody>';
                         }
                             }else{
                              echo '<h1 class="errorr">No record Found</h1>';
@@ -262,13 +256,13 @@ if(!isset($_SESSION['ROLE'] )) {
                 
    ?>
 
-            
+            </table>
             <hr>
             <br>
-            <a class="neww" href="budget\proceeds.php"><i class="fas fa-plus"></i>Add New</a>
+            <a class="neww" href="budget\materials.php"><i class="fas fa-plus"></i>Add New</a>
           </div>
           <div class="main-products">
-          <h1 class="titttle">contracts</h1>
+          <h1 class="titttle">Transport Fare</h1>
             <div class="butts">
             <button class="copy" onclick="copyTable('table3')">Copy</button>
             <button  class="copy" onclick="exportToExcel('table3')">Excel</button>
@@ -306,11 +300,7 @@ if(!isset($_SESSION['ROLE'] )) {
                                     <td>'.$row['name'].'</td>
                                     <td>'.$row['amount'].'</td>
                                     <td>'.$row['date'].'</td>
-                                    <td>
-                                    <button id="edit"><a href="viewBudget.php?edit='.$row['id'].'" class="edit"><i class="fas fa-edit" style="color: white;" aria-hidden="true"></i></a></button>
-                                    <button id="del"><a href="viewBudget.php?delete=<?php echo '.$row['id'].'; ?>" class="delete" onclick="return confirm(\'Do you really want to delete this record?\');"><i class="fas fa-trash" style="color: white;" aria-hidden="true"></i></a></button>
-                                    </td>
-                                    </tr>
+                                    
                                     
                             </tbody>
                             </table>';
@@ -364,11 +354,7 @@ if(!isset($_SESSION['ROLE'] )) {
                                     <td>'.$row['name'].'</td>
                                     <td>'.$row['amount'].'</td>
                                     <td>'.$row['date'].'</td>
-                                    <td>
-                                    <button id="edit"><a href="viewBudget.php?edit='.$row['id'].'" class="edit"><i class="fas fa-edit" style="color: white;" aria-hidden="true"></i></a></button>
-                                    <button id="del"><a href="viewBudget.php?delete=<?php echo '.$row['id'].'; ?>" class="delete" onclick="return confirm(\'Do you really want to delete this record?\');"><i class="fas fa-trash" style="color: white;" aria-hidden="true"></i></a></button>
-                                    </td>
-                                    </tr>
+                                    
                                     
                             </tbody>
                             </table>';
@@ -431,11 +417,7 @@ if(!isset($_SESSION['ROLE'] )) {
                                     <td>'.$row['name'].'</td>
                                     <td>'.$row['amount'].'</td>
                                     <td>'.$row['date'].'</td>
-                                    <td>
-                                    <button id="edit"><a href="viewBudget.php?edit='.$row['id'].'" class="edit"><i class="fas fa-edit" style="color: white;" aria-hidden="true"></i></a></button>
-                                    <button id="del"><a href="viewBudget.php?delete=<?php echo '.$row['id'].'; ?>" class="delete" onclick="return confirm(\'Do you really want to delete this record?\');"><i class="fas fa-trash" style="color: white;" aria-hidden="true"></i></a></button>
-                                    </td>
-                                    </tr>
+                                    
                                     
                             </tbody>
                             </table>';
@@ -457,7 +439,7 @@ if(!isset($_SESSION['ROLE'] )) {
 <?php  
  if(isset($_GET['edit'])){
      $edit_id = $_GET['edit'];
-    $edit_query = mysqli_query($conn, "SELECT * FROM proceeds WHERE id = '$edit_id'") or die('query failed');
+    $edit_query = mysqli_query($conn, "SELECT * FROM materials WHERE id = '$edit_id'") or die('query failed');
     if(mysqli_num_rows($edit_query)){
      while($fetch_edit = mysqli_fetch_assoc($edit_query)){
  ?>
@@ -491,7 +473,7 @@ if(!isset($_SESSION['ROLE'] )) {
              $name = $_POST['name'];
              $amt = $_POST['ammount'];
              $date = $_POST['date'];
-             $update_query = mysqli_query($conn, "UPDATE proceeds SET name='$name', amount='$amt', date='$date' WHERE id='$update_id' ") or die('query failed');
+             $update_query = mysqli_query($conn, "UPDATE materials SET name='$name', amount='$amt', date='$date' WHERE id='$update_id' ") or die('query failed');
       
      if($update_query !== TRUE){;
          echo "something went wrong";

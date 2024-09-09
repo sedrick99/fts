@@ -117,7 +117,7 @@ if(!isset($_SESSION['ROLE'] )) {
         </ul>
     </div> 
     <section>
-    <h1 class="titre">proceeds</h1>
+    <h1 class="titre">salaries</h1>
     <h3><a href="\fts\php\admin\vewBudget.php"></a></h3>
     <div class="case">
     <div class="main-products">
@@ -154,7 +154,7 @@ if(!isset($_SESSION['ROLE'] )) {
     <?php
 // Database connection
 $conn = new mysqli("localhost", "root", "", "fts") or die ('connection failed');
-// Create the 'proceeds' table if it doesn't exist
+// Create the 'salaries' table if it doesn't exist
 $sql = "CREATE TABLE IF NOT EXISTS salaries (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -166,13 +166,13 @@ if ($conn->query($sql) !== TRUE) {
     echo "Error creating table: " . $conn->error;
 }
 
-// Insert data from form into 'proceeds' table
+// Insert data from form into 'salaries' table
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
     $name = $_POST['name'];
     $amount = $_POST['amount'];
     $date = $_POST['date'];
 
-    $sql = "INSERT INTO proceeds (name, amount, date) VALUES ('$name','$amount','$date')";
+    $sql = "INSERT INTO salaries (name, amount, date) VALUES ('$name','$amount','$date')";
 
     if ($conn->query($sql) === TRUE) {
         echo '<div class="success-message" id="success-message">record addedd succesfully!</div>';

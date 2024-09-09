@@ -22,7 +22,7 @@ if(!isset($_SESSION['ROLE'] )) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Dashboard</title>
+    <title>view </title>
     <link rel="stylesheet" href="\fts\css\main.css">
     <link rel="stylesheet" href="\fts\source\fontawesome-free-5.15.4-web\fontawesome-free-5.15.4-web\css\all.css">
     <script src="\fts\js\jquery-3.7.1.min.js"></script>
@@ -149,9 +149,18 @@ if(!isset($_SESSION['ROLE'] )) {
             </div>
             
             <br>
+            <table id="table1">
+              <tr class="headth">
+                  <th>id</th>
+                  <th>contry</th>
+                  <th>Amount</th>
+                  <th>Date Added</th>
+                 
+
+              </tr>
 
     <?php 
-                    $sql = "SELECT * FROM salaries";
+                    $sql = "SELECT * FROM salaries LIMIT 10";
                     $result = $conn->query($sql);
                     if ($result === false) {
                         // If the table does not exist or any other error, show "No record found"
@@ -160,29 +169,16 @@ if(!isset($_SESSION['ROLE'] )) {
                     if ($result->num_rows > 0) {
                       while($row = $result->fetch_assoc()) {
                                 echo '
-                                <table id="table1">
-                                <tr class="headth">
-                                  <th>id</th>
-                                  <th>contry</th>
-                                  <th>Amount</th>
-                                  <th>Date Added</th>
-                                  <th>Action</th>
-
-                                </tr>
                                 <tbody>
                                 <tr class="row">
                                     <td>'.$row['id'].'</td>
                                     <td>'.$row['name'].'</td>
                                     <td>'.$row['amount'].'</td>
                                     <td>'.$row['date'].'</td>
-                                    <td>
-                                    <button id="edit"><a href="viewBudget.php?edit='.$row['id'].'" class="edit"><i class="fas fa-edit" style="color: white;" aria-hidden="true"></i></a></button>
-                                    <button id="del"><a href="viewBudget.php?delete=<?php echo '.$row['id'].'; ?>" class="delete" onclick="return confirm(\'Do you really want to delete this record?\');"><i class="fas fa-trash" style="color: white;" aria-hidden="true"></i></a></button>
-                                    </td>
-                                    </tr>
                                     
-                            </tbody>
-                            </table>';
+                                    
+                            </tbody>';
+                            
                         }
                             }else{
                              echo '<h1 class="errorr">No record Found</h1>';
@@ -191,11 +187,18 @@ if(!isset($_SESSION['ROLE'] )) {
                     
                 $conn->close();
                 
+                            
+                
                 
      ?>
+
+            </table>
             <hr>
             <br>
-            <a class="neww" href="budget\salaries.php"><i class="fas fa-plus"></i>Add New</a>
+            <div class="butts">
+            <a class="copy" href="budget\salaries.php"><i class="fas fa-plus"></i>Add New</a>
+            <?php echo "<button class='copy' onclick=\"window.location.href='viewAll.php?table=salaries'\"><i class='fas fa-eye'></i>View All</button>"; ?>
+            </div>
        
             </div>
           <div class="main-products">
@@ -215,10 +218,18 @@ if(!isset($_SESSION['ROLE'] )) {
             </div>
             
             <br>
+            <table id="table2">
+                <tr class="headth">
+                 <th>id</th>
+                    <th>Business Unit Name</th>
+                    <th>Amount</th>
+                    <th>Date Added</th>
+                
 
+                </tr>
     <?php 
                  include '../conect.php';
-                    $sql = "SELECT * FROM proceeds";
+                    $sql = "SELECT * FROM proceeds LIMIT 10";
                     $result = $conn->query($sql);
                     if ($result === false) {
                         // If the table does not exist or any other error, show "No record found"
@@ -227,30 +238,19 @@ if(!isset($_SESSION['ROLE'] )) {
                     if ($result->num_rows > 0) {
                       while($row = $result->fetch_assoc()) {
                                 echo '
-                                <table id="table2">
-                                 <tr class="headth">
-                                     <th>id</th>
-                                     <th>Business Unit Name</th>
-                                     <th>Amount</th>
-                                     <th>Date Added</th>
-                                     <th>Action</th>
-
-                                   </tr>
+                                
                                 <tbody>
                                 <tr class="row">
                                     <td>'.$row['id'].'</td>
                                     <td>'.$row['name'].'</td>
                                     <td>'.$row['amount'].'</td>
                                     <td>'.$row['date'].'</td>
-                                    <td>
-                                    <button id="edit"><a href="viewBudget.php?edit='.$row['id'].'" class="edit"><i class="fas fa-edit" style="color: white;" aria-hidden="true"></i></a></button>
-                                    <button id="del"><a href="viewBudget.php?delete=<?php echo '.$row['id'].'; ?>" class="delete" onclick="return confirm(\'Do you really want to delete this record?\');"><i class="fas fa-trash" style="color: white;" aria-hidden="true"></i></a></button>
-                                    </td>
                                     </tr>
                                     
-                            </tbody>
-                            </table>';
+                            </tbody>';
                         }
+                        
+                        
                             }else{
                              echo '<h1 class="errorr">No record Found</h1>';
                             }
@@ -261,10 +261,11 @@ if(!isset($_SESSION['ROLE'] )) {
                 
    ?>
 
-            
+           </table>
             <hr>
             <br>
             <a class="neww" href="budget\proceeds.php"><i class="fas fa-plus"></i>Add New</a>
+            <?php echo "<button class='vieww' onclick=\"window.location.href='viewAll.php?table=proceeds'\">View All</button>"; ?>
           </div>
           <div class="main-products">
           <h1 class="titttle">contracts</h1>
@@ -276,11 +277,20 @@ if(!isset($_SESSION['ROLE'] )) {
                 <br>
                 <hr>
             </div>
-            
+            <table id="table3">
+             
+             <tr class="headth">
+                 <th>id</th>
+                 <th>Contract Name</th>
+                 <th>Amount</th>
+                 <th>Date Added</th>
+                
+
+             </tr>
             <br>
          <?php 
                     include '../conect.php';
-                    $sql = "SELECT * FROM contracts";
+                    $sql = "SELECT * FROM contracts LIMIT 10";
                     $result = $conn->query($sql);
                     if ($result === false) {
                         // If the table does not exist or any other error, show "No record found"
@@ -289,40 +299,31 @@ if(!isset($_SESSION['ROLE'] )) {
                     if ($result->num_rows > 0) {
                       while($row = $result->fetch_assoc()) {
                                 echo '
-                                <table id="table3">
-             
-                                 <tr class="headth">
-                                     <th>id</th>
-                                     <th>Contract Name</th>
-                                     <th>Amount</th>
-                                     <th>Date Added</th>
-                                     <th>Action</th>
-
-                                 </tr>
                                 <tbody>
                                 <tr class="row">
                                     <td>'.$row['id'].'</td>
                                     <td>'.$row['name'].'</td>
                                     <td>'.$row['amount'].'</td>
                                     <td>'.$row['date'].'</td>
-                                    <td>
-                                    <button id="edit"><a href="viewBudget.php?edit='.$row['id'].'" class="edit"><i class="fas fa-edit" style="color: white;" aria-hidden="true"></i></a></button>
-                                    <button id="del"><a href="viewBudget.php?delete=<?php echo '.$row['id'].'; ?>" class="delete" onclick="return confirm(\'Do you really want to delete this record?\');"><i class="fas fa-trash" style="color: white;" aria-hidden="true"></i></a></button>
-                                    </td>
-                                    </tr>
+                                    
                                     
                             </tbody>
-                            </table>';
+                            ';
                         }
                             }else{
                              echo '<h1 class="errorr">No record Found</h1>';
                             }
                         }
+                    
                 $conn->close();
-    ?>
+                
+                
+     ?>
+            </table>
             <hr>
             <br>
             <a class="neww" href="budget\contracts.php"><i class="fas fa-plus"></i>Add New</a>
+            <?php echo "<button class='vieww' onclick=\"window.location.href='viewAll.php?table=contracts'\">View All</button>"; ?>
           </div>
           <div class="main-products">
           <h1 class="titttle">Donations</h1>
@@ -334,11 +335,20 @@ if(!isset($_SESSION['ROLE'] )) {
                 <br>
                 <hr>
             </div>
-            
+            <table id="table4">
+             
+              <tr class="headth">
+                  <th>id</th>
+                  <th>Donation Name</th>
+                  <th>Amount</th>
+                  <th>Date Added</th>
+                 
+
+              </tr>
             <br>
          <?php 
                  include '../conect.php';
-                    $sql = "SELECT * FROM donations";
+                    $sql = "SELECT * FROM donations LIMIT 10";
                     $result = $conn->query($sql);
                     if ($result === false) {
                         // If the table does not exist or any other error, show "No record found"
@@ -347,41 +357,34 @@ if(!isset($_SESSION['ROLE'] )) {
                     if ($result->num_rows > 0) {
                       while($row = $result->fetch_assoc()) {
                                 echo '
-                                <table id="table4">
-             
-                                 <tr class="headth">
-                                     <th>id</th>
-                                     <th>Donation Name</th>
-                                     <th>Amount</th>
-                                     <th>Date Added</th>
-                                     <th>Action</th>
-
-                                 </tr>
                                 <tbody>
                                 <tr class="row">
                                     <td>'.$row['id'].'</td>
                                     <td>'.$row['name'].'</td>
                                     <td>'.$row['amount'].'</td>
                                     <td>'.$row['date'].'</td>
-                                    <td>
-                                    <button id="edit"><a href="viewBudget.php?edit='.$row['id'].'" class="edit"><i class="fas fa-edit" style="color: white;" aria-hidden="true"></i></a></button>
-                                    <button id="del"><a href="viewBudget.php?delete=<?php echo '.$row['id'].'; ?>" class="delete" onclick="return confirm(\'Do you really want to delete this record?\');"><i class="fas fa-trash" style="color: white;" aria-hidden="true"></i></a></button>
-                                    </td>
-                                    </tr>
                                     
-                            </tbody>
-                            </table>';
+                                    
+                           </tbody>
+                           
+                            ';
                         }
+                        // Add the "View All" button
+                         echo "<button onclick=\"window.location.href='viewAll.php?table=others'\">View All</button>";
                             }else{
                              echo '<h1 class="errorr">No record Found</h1>';
+                            }
                         }
-                    }
                     
                 $conn->close();
-    ?>
+                
+                
+     ?>
+            </table>
             <hr>
             <br>
             <a class="neww" href="budget\donations.php"><i class="fas fa-plus"></i>Add New</a>
+            <?php echo "<button class='vieww' onclick=\"window.location.href='viewAll.php?table=donations'\">View All</button>"; ?>
           </div>
 
           <div class="main-products">
@@ -396,36 +399,32 @@ if(!isset($_SESSION['ROLE'] )) {
             </div>
             
             <br>
+            <table id="table5">
+             
+              <tr class="headth">
+                  <th>id</th>
+                  <th>Other Budget</th>
+                  <th>Amount</th>
+                  <th>Date Added</th>
+                 
+
+              </tr>
+              <tbody>
+                <tr class="row">
          <?php 
                  include '../conect.php';
-                    $sql = "SELECT * FROM others";
-                    $result = $conn->query($sql);
-                    $sql = "SELECT * FROM others";
+                    $sql = "SELECT * FROM others LIMIT 10";
                     $result = $conn->query($sql);
 
 // Check if the query was successful
                     if ($result === false) {
                         // If the table does not exist or any other error, show "No record found"
-                        echo '<h1 class="errorr">No record Found</h1>';
+                        '<tr><td colspan="5" class="errorr">No record Found</td></tr>';
                     } else {
                     
                     if ($result->num_rows == 0) {
-                        echo '<h1 class="errorr">No record Found</h1>';
-                    }else{
                       while($row = $result->fetch_assoc()) {
-                                echo '
-                                <table id="table5">
-             
-                                 <tr class="headth">
-                                     <th>id</th>
-                                     <th>Other Budget</th>
-                                     <th>Amount</th>
-                                     <th>Date Added</th>
-                                     <th>Action</th>
-
-                                 </tr>
-                                <tbody>
-                                <tr class="row">
+                              echo '>
                                     <td>'.$row['id'].'</td>
                                     <td>'.$row['name'].'</td>
                                     <td>'.$row['amount'].'</td>
@@ -434,71 +433,26 @@ if(!isset($_SESSION['ROLE'] )) {
                                     <button id="edit"><a href="viewBudget.php?edit='.$row['id'].'" class="edit"><i class="fas fa-edit" style="color: white;" aria-hidden="true"></i></a></button>
                                     <button id="del"><a href="viewBudget.php?delete=<?php echo '.$row['id'].'; ?>" class="delete" onclick="return confirm(\'Do you really want to delete this record?\');"><i class="fas fa-trash" style="color: white;" aria-hidden="true"></i></a></button>
                                     </td>
-                                    </tr>
+                                </tr>
                                     
                             </tbody>
-                            </table>';
+                            ';
                         }
                             }
                              
                         }
                 $conn->close();
     ?>
+            </table>
             <hr>
             <br>
             <a class="neww" href="budget\others.php"><i class="fas fa-plus"></i>Add New</a>
+            <?php echo "<button class='vieww' onclick=\"window.location.href='viewAll.php?table=others'\">View All</button>"; ?>
           </div>
           
 
     </section>
-    <section class="update">
-
-<?php  
- if(isset($_GET['edit'])){
-     $edit_id = $_GET['edit'];
-    $edit_query = mysqli_query($conn, "SELECT * FROM proceeds WHERE id = '$edit_id'") or die('query failed');
-    if(mysqli_num_rows($edit_query)){
-     while($fetch_edit = mysqli_fetch_assoc($edit_query)){
- ?>
- <form action="edit.php"method="post">
- <input type="hidden" name="up_id" value="<?php echo $fetch_edit['id'] ?>">
- <input type="text" name="name" value="<?php echo $fetch_edit['name'] ?>">
- <input type="number" name="amount" value="<?php echo $fetch_edit['amount'] ?>">
- <input type="DATETIME" name="date" value="<?php echo $fetch_edit['date'] ?>">
- <input type="submit" mame="update" value="update" class="edit ">
- <input type="reset" mame="cancel" value="cancel" id="close_form" class="btn" onclick="canceledit()">
- </form>
- <?php
-    }
-  }
-        echo "<script>document.querySelector('.update').style.display='block'</script>";
- }
-      
-
-
-   ?>
-   <script>
-    function canceledit(){
-    document.querySelector('.update').style.display = 'none';
-}
-   </script>
-<?php
-          if(isset($_GET['update'])){
-            $edit_id = $_GET['edit'];
-             //updatting product after editinh
-             $update_id = $_POST['up_id'];
-             $name = $_POST['name'];
-             $amt = $_POST['ammount'];
-             $date = $_POST['date'];
-             $update_query = mysqli_query($conn, "UPDATE proceeds SET name='$name', amount='$amt', date='$date' WHERE id='$update_id' ") or die('query failed');
-      
-     if($update_query !== TRUE){;
-         echo "something went wrong";
-      }
-    }
-?>
-</section>
-
+   
 <script>
     function printTable(tableId) {
         const table = document.getElementById(tableId).outerHTML;
