@@ -109,13 +109,15 @@ if(!isset($_SESSION['ROLE'] )) {
                 </script>
           </li>
           <li class="item"><a href="\fts\php\hospital\hospital-dashboard.php" class="itemLink"><i class="fas fa-hospital" id="icon"></i>HOSPITALS</a></li>
+          <li class="item"><a href="\fts\php\settings.php" class="itemLink"><i class="fas fa-settings" id="icon"></i>SETTINGS</a></li>
+                   <li class="item"><a href="\fts\php\settings.php" class="itemLink"><i class="fas fa-settings" id="icon"></i>SETTINGS</a></li>
           <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
         </ul>
     </div> 
     <section>
         <br>
     <div class="head-pro">
-        <button class="add"><a href="users.php" style="color: white;">view all users</a></button>
+        <button class="neww"><a href="users.php" style="color: white; text-decoration: none;">view all users</a></button>
     </div>
     <div class="main-products">
         <h1 class="titttle">Add User</h1>
@@ -153,7 +155,7 @@ if(!isset($_SESSION['ROLE'] )) {
             $conn->close();
             ?>
         </select>
-            <button type="submit" name="submit" class="sava" >Save</button>
+            <button type="submit" name="submit" class="neww" >Save</button>
         </form>
     </div>
    </section>

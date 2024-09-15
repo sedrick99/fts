@@ -8,22 +8,42 @@
     <script src="\fts\js\chart.umd.js"></script>
     <style>
         /* Basic styles for the modal */
-        
+    .cover{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        background: rgb(150, 176, 231);
+
+}
+table{
+    border: none;
+}
+th{
+    border: none;
+    border-bottom: 1px solid;
+}
+td{
+    border: none;
+    border-bottom: 1px solid;
+}
     </style>
 </head>
 <body>
+<div class="cover">
+    <div class="main-products">
+<div class="butts">
+    <button class="copy" onclick="copyTable('table1')">Copy</button>
+    <button  class="copy" onclick="exportToExcel('table1')">Excel</button>
+    <button class="copy"onclick="printTable('table1')">Print</button>
     <br>
-            <button class="add"><a href="viewAll.php" style="color: white;">Add New Budget</a></button>
-
-            <br>
-            <div class="butts">
-                <button class="copy" onclick="copyTable('table1')">Copy</button>
-                <button  class="copy" onclick="exportToExcel('table1')">Excel</button>
-                <button class="copy"onclick="printTable('table1')">Print</button>
-                <br>
-                <br>
-                <hr>
-            </div>
+    <br>
+    <hr>
+</div>
 <?php
 // Database connection
 $conn = new mysqli("localhost", "root", "", "fts");
@@ -37,7 +57,9 @@ if ($conn->connect_error) {
 $tableName = isset($_GET['table']) ? $_GET['table'] : 'others'; // Default to 'others'
 
 // Validate the table name to avoid SQL injection
-$validTables = ['salaries', 'proceeds', 'donations','contracts', 'others'];
+$validTables = ['salaries', 'proceeds', 'donations','contracts', 'others', 'expenditure', 'materials', 'allowance', 'transport',
+'plough', 'creditors', 'servicesb', 'c_building', 'servicea', 'taxes', 'lab', 'other_exp', 'cards',
+ 'depreciation'];
 if (!in_array($tableName, $validTables)) {
     echo "<h2>Invalid table specified.</h2>";
     exit;
@@ -86,6 +108,9 @@ if ($result->num_rows > 0) {
 echo "</table>";
 $conn->close();
 ?>
+    </div>
+    <a href="viewExpense.php" class="neww">Back</a>
+</div>
 
 <script>
     // Open edit modal and redirect to edit page

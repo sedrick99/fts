@@ -32,11 +32,11 @@ if(!isset($_SESSION['ROLE'] )) {
     background-color: blue;
     color: white;
     padding: 6px;
-    margin-left: 40%;
     text-decoration: none;
     border-radius: 7px;
     text-justify: auto;
     font-size: 1.25rem;
+    margin: 1rem;
     
   }
   .neww:hover{
@@ -51,6 +51,14 @@ if(!isset($_SESSION['ROLE'] )) {
 .errorr{
     color: red;
     margin-left: 40%;
+}
+
+
+  .neww:hover{
+    border: 2px solid black;
+    background-color: rgb(7, 125, 184);
+    transform: scale(1.1);
+    transition: .6s;
 }
 </style>
 </head>
@@ -128,6 +136,7 @@ if(!isset($_SESSION['ROLE'] )) {
                 </script>
           </li>
           <li class="item"><a href="\fts\php\hospital\hospital-dashboard.php" class="itemLink"><i class="fas fa-hospital" id="icon"></i>HOSPITALS</a></li>
+                   <li class="item"><a href="\fts\php\settings.php" class="itemLink"><i class="fas fa-settings" id="icon"></i>SETTINGS</a></li>
           <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
         </ul>
     </div> 
@@ -195,9 +204,9 @@ if(!isset($_SESSION['ROLE'] )) {
             </table>
             <hr>
             <br>
-            <div class="butts">
-            <a class="copy" href="budget\salaries.php"><i class="fas fa-plus"></i>Add New</a>
-            <?php echo "<button class='copy' onclick=\"window.location.href='viewAll.php?table=salaries'\"><i class='fas fa-eye'></i>View All</button>"; ?>
+            <div class="buts">
+            <button class="neww" ><a style="color: white; text-decoration: none;" href="budget\salaries.php"><i class="fas fa-plus"></i>Add New</a></button>
+            <?php echo "<button class='neww' onclick=\"window.location.href='viewAll.php?table=salaries'\"><i class='fas fa-eye'></i>View All</button>"; ?>
             </div>
        
             </div>
@@ -264,9 +273,11 @@ if(!isset($_SESSION['ROLE'] )) {
            </table>
             <hr>
             <br>
-            <a class="neww" href="budget\proceeds.php"><i class="fas fa-plus"></i>Add New</a>
-            <?php echo "<button class='vieww' onclick=\"window.location.href='viewAll.php?table=proceeds'\">View All</button>"; ?>
-          </div>
+            <div class="buts">
+            <button class="neww" ><a style="color: white; text-decoration: none;" href="budget\proceeds.php"><i class="fas fa-plus"></i>Add New</a></button>
+            <?php echo "<button class='neww' onclick=\"window.location.href='viewAll.php?table=proceeds'\">View All</button>"; ?>
+            </div>  
+        </div>
           <div class="main-products">
           <h1 class="titttle">contracts</h1>
             <div class="butts">
@@ -322,9 +333,11 @@ if(!isset($_SESSION['ROLE'] )) {
             </table>
             <hr>
             <br>
-            <a class="neww" href="budget\contracts.php"><i class="fas fa-plus"></i>Add New</a>
-            <?php echo "<button class='vieww' onclick=\"window.location.href='viewAll.php?table=contracts'\">View All</button>"; ?>
-          </div>
+            <div class="buts">
+            <button class="neww" ><a style="color: white; text-decoration: none;" href="budget\contracts.php"><i class="fas fa-plus"></i>Add New</a></button>
+            <?php echo "<button class='neww' onclick=\"window.location.href='viewAll.php?table=contracts'\">View All</button>"; ?>
+            </div>  
+        </div>
           <div class="main-products">
           <h1 class="titttle">Donations</h1>
             <div class="butts">
@@ -370,7 +383,6 @@ if(!isset($_SESSION['ROLE'] )) {
                             ';
                         }
                         // Add the "View All" button
-                         echo "<button onclick=\"window.location.href='viewAll.php?table=others'\">View All</button>";
                             }else{
                              echo '<h1 class="errorr">No record Found</h1>';
                             }
@@ -383,9 +395,11 @@ if(!isset($_SESSION['ROLE'] )) {
             </table>
             <hr>
             <br>
-            <a class="neww" href="budget\donations.php"><i class="fas fa-plus"></i>Add New</a>
-            <?php echo "<button class='vieww' onclick=\"window.location.href='viewAll.php?table=donations'\">View All</button>"; ?>
-          </div>
+            <div class="buts">
+            <button class="neww" ><a style="color: white; text-decoration: none;" href="budget\donations.php"><i class="fas fa-plus"></i>Add New</a></button>
+            <?php echo "<button class='neww' onclick=\"window.location.href='viewAll.php?table=donations'\">View All</button>"; ?>
+            </div>  
+        </div>
 
           <div class="main-products">
           <h1 class="titttle">Others</h1>
@@ -446,9 +460,11 @@ if(!isset($_SESSION['ROLE'] )) {
             </table>
             <hr>
             <br>
-            <a class="neww" href="budget\others.php"><i class="fas fa-plus"></i>Add New</a>
-            <?php echo "<button class='vieww' onclick=\"window.location.href='viewAll.php?table=others'\">View All</button>"; ?>
-          </div>
+            <div class="buts">
+            <button class="neww" ><a style="color: white; text-decoration: none;" href="budget\others.php"><i class="fas fa-plus"></i>Add New</a></button>
+            <?php echo "<button class='neww' onclick=\"window.location.href='viewAll.php?table=others'\">View All</button>"; ?>
+            </div>  
+        </div>
           
 
     </section>

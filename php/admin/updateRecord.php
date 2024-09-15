@@ -16,7 +16,9 @@ $id = $_POST['id'];
 $tableName = $_POST['table'];
 
 // Validate the table name to avoid SQL injection
-$validTables = ['salaries', 'proceeds', 'others'];
+$validTables = ['users', 'salaries', 'proceeds', 'donations','contracts', 'others', 'expenditure', 'materials', 'allowance', 'transport',
+'plough', 'creditors', 'servicesb', 'c_building', 'servicea', 'taxes', 'lab', 'other_exp', 'cards',
+ 'depreciation'];
 if (!in_array($tableName, $validTables)) {
     die("Invalid table specified.");
 }
@@ -41,6 +43,7 @@ $sql = "UPDATE $tableName SET $setClauseString WHERE id='$id'";
 
 if ($conn->query($sql) === TRUE) {
     header("Location: viewAll.php?table=$tableName"); // Redirect back after update
+    echo '<div class="success-message" id="success-message">Product added successfully!</div>';
 } else {
     echo "Error: " . $conn->error;
 }

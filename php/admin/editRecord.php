@@ -12,7 +12,9 @@ $tableName = $_GET['table'];
 $id = $_GET['id'];
 
 // Validate the table name to avoid SQL injection
-$validTables = ['salaries', 'proceeds', 'others'];
+$validTables = ['salaries', 'proceeds', 'donations','contracts', 'others', 'expenditure', 'materials', 'allowance', 'transport',
+'plough', 'creditors', 'servicesb', 'c_building', 'servicea', 'taxes', 'lab', 'other_exp', 'cards',
+ 'depreciation'];
 if (!in_array($tableName, $validTables)) {
     echo "Invalid table specified.";
     exit;
@@ -40,12 +42,35 @@ if (!$row) {
     <script src="\fts\js\jquery-3.7.1.min.js"></script>
     <script src="\fts\js\chart.umd.js"></script>
     <style>
-      
+          .cover{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        background: rgb(150, 176, 231);
+        .neww{
+    background-color: blue;
+    color: white;
+    padding: 6px;
+    text-decoration: none;
+    border-radius: 7px;
+    text-justify: auto;
+    font-size: 1.25rem;
+    margin: 1rem;
+    
+  }
+
+}
     </style>
 </head>
 <body>
-
+<div class="cover">
 <div class="main-products">
+    <h1  class="titttle">edit <?php $tableName ?>  record</h1>
 <form action="updateRecord.php" method="POST">
             <input type="hidden" name="table" value="<?php echo htmlspecialchars($tableName); ?>"> <!-- Hidden input for table name -->
             <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>"> <!-- Hidden input for ID -->
@@ -56,10 +81,10 @@ if (!$row) {
                     <input type="text" name="<?php echo $column; ?>" value="<?php echo htmlspecialchars($value); ?>" required><br>
                 <?php endif; ?>
             <?php endforeach; ?>
-            <button type="submit">Save Changes</button>
+            <button class="neww" type="submit">Save Changes</button>
         </form>
 </div>
-    </div>
+</div>
 </div>
 
 </body>

@@ -45,7 +45,7 @@ if(!isset($_SESSION['ROLE'] )) {
         <ul class="list">
         <?php if($_SESSION['ROLE'] == 'admin' || $_SESSION['ROLE'] == 'ceo') {
             echo'
-            <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>MAIN DASHBOARD</a></li>'; } ?>
+            <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>ADMIN</a></li>'; } ?>
           <li class="item "><a href="\fts\php\hospital\hospital1\kizito.php" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>Dashboard</a></li>
           <li class="item"><a href="#" class="hov itemLink" onclick="toggleSubOptions()"><i class="fas fa-product" id="icon"></i>RECORDS</a>
                 <ul class="sublist" id="subOptions">
@@ -80,6 +80,7 @@ if(!isset($_SESSION['ROLE'] )) {
                 </script>
           </li>
           <li class="item"><a href="\fts\php\hospital\hospital1\balance.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>Account Balance</a></li>
+                   <li class="item"><a href="\fts\php\settings.php" class="itemLink"><i class="fas fa-settings" id="icon"></i>SETTINGS</a></li>
           <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
 
         </ul>

@@ -53,7 +53,7 @@ if(!isset($_SESSION['ROLE'])) {
         <ul class="list">
         <?php if($_SESSION['ROLE'] == 'admin' || $_SESSION['ROLE'] == 'ceo') {
             echo'
-            <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>MAIN DASHBOARD</a></li>'; } ?>
+            <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>ADMIN</a></li>'; } ?>
             <li class="item "><a href="\fts\php\hospital\hospital-dashboard.php" class="hov itemLink "><i class="fas fa-hospital" id="icon"></i>DASHBOARD</a></li> 
             <li class="item"><a href="hospital1\kizito.php" class="itemLink"></i>St.KIZITO</a></li>
             <li class="item"><a href="hospital2\therese.php" class="itemLink"></i>St. THERESE</a></li>

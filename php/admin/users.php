@@ -95,6 +95,7 @@ if(!isset($_SESSION['ROLE'] )) {
                 </script>
           </li>
           <li class="item"><a href="\fts\php\hospital\hospital-dashboard.php" class="itemLink"><i class="fas fa-hospital" id="icon"></i>HOSPITALS</a></li>
+                   <li class="item"><a href="\fts\php\settings.php" class="itemLink"><i class="fas fa-settings" id="icon"></i>SETTINGS</a></li>
           <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
         </ul>
     </div> 
@@ -142,12 +143,18 @@ if(!isset($_SESSION['ROLE'] )) {
                                     <td>'.$row['id'].'</td>
                                     <td>'.$row['username'].'</td>
                                     <td>'.$row['role'].'</td>
-                                    <td>'.$row['department'].'</td>
-                                    <td>
-                                    <button id="edit"><a href="users.php?edit='.$row['id'].'" class="edit"><i class="fas fa-edit" style="color: white;" aria-hidden="true"></i></a></button>
-                                    <button id="edit"><a href="users.php?message='.$row['id'].'" class="edit"><i class="fa fa-comment" style="color: white;" aria-hidden="true"></i></a></button>
-                                    <button id="del"><a href="users.php?delete='.$row['id'].'" class="delete" onclick="return confirm("Do you really want to delete this product");"><i class="fa fa-trash" style="color: white;" aria-hidden="true"></a></button>
-                                </td>
+                                    <td>'.$row['department'].'</td>';
+                                    echo "<td>
+                                    <button id='edit' class='edit-button' data-id='{$row['id']}'><i class='fas fa-edit' style='color: white;' aria-hidden='true'></i></button>
+                                    <button id='del' class='delete-button' data-id='{$row['id']}'><i class='fas fa-trash' style='color: white;' aria-hidden='true'></button>
+                                  </td>";
+                                    
+                                //     <td>
+                                //     <button id="edit"><a href="users.php?edit='.$row['id'].'" class="edit"><i class="fas fa-edit" style="color: white;" aria-hidden="true"></i></a></button>
+                                //     <button id="edit"><a href="users.php?message='.$row['id'].'" class="edit"><i class="fa fa-comment" style="color: white;" aria-hidden="true"></i></a></button>
+                                //     <button id="del"><a href="users.php?delete='.$row['id'].'" class="delete" onclick="return confirm("Do you really want to delete this product");"><i class="fa fa-trash" style="color: white;" aria-hidden="true"></a></button>
+                                // </td>
+                                echo'
                                     </tr>
                             </tbody>';
                         }
@@ -160,6 +167,27 @@ if(!isset($_SESSION['ROLE'] )) {
                 
                   ?>
             </table>
+<script>
+    // Open edit modal and redirect to edit page
+    document.querySelectorAll('.edit-button').forEach(button => {
+        button.onclick = function() {
+            const id = this.getAttribute('data-id');
+            const table = '<?php echo $tableName; ?>'; // Get the current table name
+            window.location.href = `editRecord.php?table=${table}&id=${id}`;
+        };
+    });
+
+    // Handle delete button click
+    document.querySelectorAll('.delete-button').forEach(button => {
+        button.onclick = function() {
+            const id = this.getAttribute('data-id');
+            const table = '<?php echo $tableName; ?>'; // Get the current table name
+            if (confirm('Are you sure you want to delete this record?')) {
+                window.location.href = 'deleteRecord.php?table=' + table + '&id=' + id; // Redirect to delete
+            }
+        };
+    });
+</script>
 
 
     </section>
