@@ -64,9 +64,9 @@ if(!isset($_SESSION['ROLE'] )) {
                 </script>
             </li>
           </li>
-          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions2()"><i class="fas fa-product" id="icon"></i>EXPENSES</a>
+          <li class="hov item"><a href="#" class="itemLink" onclick="toggleSubOptions2()"><i class="fas fa-product" id="icon"></i>EXPENSES</a>
                 <ul class="sublist" id="subOptions2">
-                    <li class="item"><a href="\fts\php\hospital\hospital1\expense.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Expeses</a></li>
+                    <li class="item"><a href="\fts\php\hospital\hospital1\expense.php" class="hov sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Expeses</a></li>
                     <li class="item"><a href="\fts\php\hospital\hospital1\viewExpense.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Expenses</a></li>
                 </ul> 
                 <script>
@@ -80,7 +80,7 @@ if(!isset($_SESSION['ROLE'] )) {
                 </script>
           </li>
           <li class="item"><a href="\fts\php\hospital\hospital1\balance.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>Account Balance</a></li>
-                   <li class="item"><a href="\fts\php\settings.php" class="itemLink"><i class="fas fa-settings" id="icon"></i>SETTINGS</a></li>
+                   <li class="item"><a href="\fts\php\settings.php" class="itemLink"><i class="fas fa-wrench"></i>SETTINGS</a></li>
           <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
 
         </ul>
@@ -90,10 +90,10 @@ if(!isset($_SESSION['ROLE'] )) {
     <div class="case">
     <div class="main-products">
         <form class="man" method="post">
-            <h1>Add New Minor Surgery Reccord</h1>
-            <label for="name">Paitient's Name</label>
+            <h1>Add service</h1>
+            <label for="name">service Name</label>
             <input type="text" id="name" name="name" placeholder="Enter customer name" required>
-            <label for="amount">Card price</label>
+            <label for="amount">Amount</label>
             <input type="number" id="amount" name="amount" placeholder="Enter card price" required>
             <label for="date">Date</label>
             <input type="datetime-local" id="date" name="date" required>
@@ -120,7 +120,7 @@ if(!isset($_SESSION['ROLE'] )) {
 // Database connection
 $conn = new mysqli("localhost", "root", "", "fts") or die ('connection failed');
 // Create the 'proceeds' table if it doesn't exist
-$sql = "CREATE TABLE IF NOT EXISTS minor_surgery (
+$sql = "CREATE TABLE IF NOT EXISTS services (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
@@ -140,11 +140,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
     $date = $_POST['date'];
     $hospital_id = 1;
     
-    $sql = "SELECT * FROM minor_surgery WHERE name ='$name'";
+    $sql = "SELECT * FROM services WHERE name ='$name'";
 $result = $conn->query($sql);
     if ($result->num_rows === 0) {
 
-    $sql = "INSERT INTO minor_surgery (name, amount, date, hospital_id) VALUES ('$name','$amount','$date', '$hospital_id')";
+    $sql = "INSERT INTO services (name, amount, date, hospital_id) VALUES ('$name','$amount','$date', '$hospital_id')";
 
     if ($conn->query($sql) === TRUE) {
         echo '<div class="success-message" id="success-message">record added successfully!</div>';
@@ -153,7 +153,9 @@ $result = $conn->query($sql);
     }
 }else{
 
-    $sql = "UPDATE minor_surgery SET amount = '$amount' WHERE name = '$name'";
+    $stmt = $conn->prepare("UPDATE services SET amount = amount + ? WHERE name = ?");
+    $stmt->bind_param("is", $amount, $name);
+    $stmt->execute();
     if ($conn->query($sql) === TRUE) {
         echo '<div class="success-message" id="success-message">Name Already exists! Amount updated.</div>';
     }

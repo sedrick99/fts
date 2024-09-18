@@ -143,6 +143,7 @@ function renderTable($conn, $tableName, $title)
         renderTable($conn, 'materials', 'Materials');
         renderTable($conn, 'servicea', 'Service A');
         renderTable($conn, 'serviceb', 'Service B');
+        renderTable($conn, 'transport', 'Transport');
         renderTable($conn, 'taxes', 'Taxes');
         renderTable($conn, 'allowance', 'Allowance');
         renderTable($conn, 'c_building', 'Capacity Building');

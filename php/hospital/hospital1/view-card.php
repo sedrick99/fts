@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-include '../conect.php';
+$conn = new mysqli("localhost", "root", "", "fts") or die ('connection failed');
 
 // Check if the user is logged in and has a role set in the session
 if (!isset($_SESSION['ROLE'])) {
@@ -33,6 +33,7 @@ function renderTable($conn, $tableName, $title)
                     <th>Amount</th>
                     <th>Date Added</th>
                 </tr>";
+    $conn = new mysqli("localhost", "root", "", "fts") or die ('connection failed');
 
     $sql = "SELECT * FROM $tableName LIMIT 10";
     $result = $conn->query($sql);
@@ -124,36 +125,66 @@ $conn->close();
     </nav>
     <div class="sidebar">
         <ul class="list">
-            <li class="item"><a href="\fts\php\admin\main-dashboard.php" class="itemLink"><i class="fas fa-tachometer-alt" id="icon"></i>Dashboard</a></li>
-            <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions()"><i class="fas fa-product" id="icon"></i>BUDGET</a>
+        <?php if($_SESSION['ROLE'] == 'admin' || $_SESSION['ROLE'] == 'ceo') {
+            echo'
+            <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>ADMIN</a></li>'; } ?>
+        
+          <li class="item "><a href="\fts\php\hospital\hospital1\kizito.php" class="hov itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>Dashboard</a></li>
+          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions()"><i class="fas fa-product" id="icon"></i>RECORDS</a>
                 <ul class="sublist" id="subOptions">
-                    <li class="item"><a href="addBudget.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Budget</a></li>
-                    <li class="item"><a href="viewBudget.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Budget</a></li>
-                </ul>
+                    <li class="item"><a href="add-card.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Record</a></li>
+                    <li class="item"><a href="view-card.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Record</a></li>
+                </ul> 
+                
+                <script>
+                    let isSubOptionsVisible = false;
+
+                    function toggleSubOptions() {
+                        const subOptions = document.getElementById("subOptions");
+                        isSubOptionsVisible = !isSubOptionsVisible;
+                        subOptions.style.display = isSubOptionsVisible ? 'block' : 'none';
+                    }
+                </script>
             </li>
-            <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions2()"><i class="fas fa-product" id="icon"></i>EXPENSES</a>
+          </li>
+          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions2()"><i class="fas fa-product" id="icon"></i>EXPENSES</a>
                 <ul class="sublist" id="subOptions2">
-                    <li class="item"><a href="expense.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Expenses</a></li>
+                    <li class="item"><a href="expense.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Expeses</a></li>
                     <li class="item"><a href="viewExpense.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Expenses</a></li>
-                </ul>
-            </li>
-            <!-- Add more navigation items as needed -->
+                </ul> 
+                <script>
+                   
+                   let isSubOptions2Visible = false;
+                    function toggleSubOptions2() {
+                        const subOptions = document.getElementById("subOptions2");
+                        isSubOptionsVisible = !isSubOptionsVisible;
+                        subOptions.style.display = isSubOptionsVisible ? 'block' : 'none';
+                    }
+                </script>
+          </li>
+          <li class="item"><a href="balance.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>Account Balance</a></li>
+                   <li class="item"><a href="\fts\php\settings.php" class="itemLink"><i class="fas fa-wrench"></i>SETTINGS</a></li>
+          <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
+
         </ul>
-    </div>
+    </div> 
+
     <section>
         <?php
         // Render each table
-        renderTable($conn, 'expenditure', 'Expenditure');
-        renderTable($conn, 'materials', 'Materials');
-        renderTable($conn, 'servicea', 'Service A');
-        renderTable($conn, 'serviceb', 'Service B');
-        renderTable($conn, 'taxes', 'Taxes');
-        renderTable($conn, 'allowance', 'Allowance');
-        renderTable($conn, 'c_building', 'Capacity Building');
-        renderTable($conn, 'other_exp', 'Other Expenses');
-        renderTable($conn, 'creditors', 'Creditors');
-        renderTable($conn, 'depreciation', 'Depreciation');
-        renderTable($conn, 'plough', 'Plough');
+        renderTable($conn, 'cards', 'Cards');
+        renderTable($conn, 'consultation', 'Consultation');
+        renderTable($conn, 'lab', 'Lab');
+        renderTable($conn, 'medication', 'Medication');
+        renderTable($conn, 'maternity', 'Maternity');
+        renderTable($conn, 'delivery', 'Delivery');
+        renderTable($conn, 'anc', 'ANC');
+        renderTable($conn, 'iwf', 'IWF');
+        renderTable($conn, 'bedfee', 'Bedfee');
+        renderTable($conn, 'Echography', 'Echography');
+        renderTable($conn, 'physiotherapy', 'physiotherapy');
+        renderTable($conn, 'minor_surgery', 'Minor-surgery');
+        renderTable($conn, 'major_surgery', 'Major-surgery');
         ?>
     </section>
     <script>

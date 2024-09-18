@@ -24,6 +24,7 @@ if ($result->num_rows > 0) {
     if (password_verify($pass, $row['password'])) {
         $_SESSION['username'] = $user;
         $_SESSION['ROLE'] = $row['role'];
+        $_SESSION['user_id'] = $row['id'];
         $_SESSION['department'] = $row['department'];
         
         // Redirect to dashboard based on role

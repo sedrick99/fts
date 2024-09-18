@@ -139,7 +139,7 @@ i{
     border-radius: .5rem;
     padding: .5rem;
     text-align: center;
-    width: 22rem;
+    width: 18rem;
     box-shadow:  4px 7px rgba(0, 0, 0, 0.2), 0 6px 20px 0 ;
     transform-origin: top right;
     line-height: 2;
@@ -522,6 +522,8 @@ margin: .5rem;
     font-size: 28px;
     font-weight: bold;
     color: black;
+    width: 100%;
+    text-align: center;
 }
 .man h1{
     margin-left: 40%;

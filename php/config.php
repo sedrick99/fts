@@ -46,7 +46,7 @@ $sql = "SELECT * FROM users WHERE username='$username'";
 $result = $conn->query($sql);
 
 if ($result->num_rows == 0) {
-    $sql = "INSERT INTO users (username, password, role) VALUES ('$username', '$hashed_password', '$role')";
+    $sql = "INSERT INTO users (username, password, role, department) VALUES ('$username', '$hashed_password', '$role', 'general')";
     if ($conn->query($sql) !== TRUE) {
         die("Error inserting data: " . $conn->error);
     }

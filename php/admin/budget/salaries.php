@@ -113,7 +113,7 @@ if(!isset($_SESSION['ROLE'] )) {
                 </script>
           </li>
           <li class="item"><a href="\fts\php\hospital\hospital-dashboard.php" class="itemLink"><i class="fas fa-hospital" id="icon"></i>HOSPITALS</a></li>
-                   <li class="item"><a href="\fts\php\settings.php" class="itemLink"><i class="fas fa-settings" id="icon"></i>SETTINGS</a></li>
+                   <li class="item"><a href="\fts\php\settings.php" class="itemLink"><i class="fas fa-wrench"></i>SETTINGS</a></li>
           <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
         </ul>
     </div> 
@@ -125,9 +125,9 @@ if(!isset($_SESSION['ROLE'] )) {
         <form class="man" method="post">
             <h1>Add New Salary</h1>
             <label for="name"> Select Country</label>
-            <select name="name" id="">
-                <option value="">CAMEROON</option>
-                <option value="">SPAIN</option>
+            <select name="name" id="name">
+                <option value="CAMEROON">CAMEROON</option>
+                <option value="SPAIN">SPAIN</option>
             </select>
             <label for="amount">Total Salary</label>
             <input type="number" id="amount" name="amount" placeholder="Enter Ammount" required>

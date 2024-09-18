@@ -64,9 +64,9 @@ if(!isset($_SESSION['ROLE'] )) {
                 </script>
             </li>
           </li>
-          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions2()"><i class="fas fa-product" id="icon"></i>EXPENSES</a>
+          <li class="hov item"><a href="#" class="itemLink" onclick="toggleSubOptions2()"><i class="fas fa-product" id="icon"></i>EXPENSES</a>
                 <ul class="sublist" id="subOptions2">
-                    <li class="item"><a href="\fts\php\hospital\hospital1\expense.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Expeses</a></li>
+                    <li class="item"><a href="\fts\php\hospital\hospital1\expense.php" class="hov sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Expeses</a></li>
                     <li class="item"><a href="\fts\php\hospital\hospital1\viewExpense.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Expenses</a></li>
                 </ul> 
                 <script>
@@ -90,10 +90,10 @@ if(!isset($_SESSION['ROLE'] )) {
     <div class="case">
     <div class="main-products">
         <form class="man" method="post">
-            <h1>Add Echography</h1>
-            <label for="name">Paitient's Name</label>
+            <h1>Add Wages</h1>
+            <label for="name">wage Name</label>
             <input type="text" id="name" name="name" placeholder="Enter customer name" required>
-            <label for="amount">Card price</label>
+            <label for="amount">Amount</label>
             <input type="number" id="amount" name="amount" placeholder="Enter card price" required>
             <label for="date">Date</label>
             <input type="datetime-local" id="date" name="date" required>
@@ -120,7 +120,7 @@ if(!isset($_SESSION['ROLE'] )) {
 // Database connection
 $conn = new mysqli("localhost", "root", "", "fts") or die ('connection failed');
 // Create the 'proceeds' table if it doesn't exist
-$sql = "CREATE TABLE IF NOT EXISTS echography (
+$sql = "CREATE TABLE IF NOT EXISTS wages (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
@@ -140,11 +140,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
     $date = $_POST['date'];
     $hospital_id = 1;
     
-    $sql = "SELECT * FROM echography WHERE name ='$name'";
+    $sql = "SELECT * FROM wages WHERE name ='$name'";
 $result = $conn->query($sql);
     if ($result->num_rows === 0) {
 
-    $sql = "INSERT INTO echography (name, amount, date, hospital_id) VALUES ('$name','$amount','$date', '$hospital_id')";
+    $sql = "INSERT INTO wages (name, amount, date, hospital_id) VALUES ('$name','$amount','$date', '$hospital_id')";
 
     if ($conn->query($sql) === TRUE) {
         echo '<div class="success-message" id="success-message">record added successfully!</div>';
@@ -153,7 +153,9 @@ $result = $conn->query($sql);
     }
 }else{
 
-    $sql = "UPDATE echography SET amount = '$amount' WHERE name = '$name'";
+    $stmt = $conn->prepare("UPDATE wages SET amount = amount + ? WHERE name = ?");
+    $stmt->bind_param("is", $amount, $name);
+    $stmt->execute();
     if ($conn->query($sql) === TRUE) {
         echo '<div class="success-message" id="success-message">Name Already exists! Amount updated.</div>';
     }

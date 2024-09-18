@@ -80,7 +80,7 @@ if(!isset($_SESSION['ROLE'] )) {
                 </script>
           </li>
           <li class="item"><a href="\fts\php\hospital\hospital1\balance.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>Account Balance</a></li>
-                   <li class="item"><a href="\fts\php\settings.php" class="itemLink"><i class="fas fa-settings" id="icon"></i>SETTINGS</a></li>
+                   <li class="item"><a href="\fts\php\settings.php" class="itemLink"><i class="fas fa-wrench"></i>SETTINGS</a></li>
           <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
 
         </ul>
@@ -90,7 +90,7 @@ if(!isset($_SESSION['ROLE'] )) {
     <div class="case">
     <div class="main-products">
         <form class="man" method="post">
-            <h1>Add New Major Surgery Record</h1>
+            <h1>Add New Minor Surgery Reccord</h1>
             <label for="name">Paitient's Name</label>
             <input type="text" id="name" name="name" placeholder="Enter customer name" required>
             <label for="amount">Card price</label>
@@ -120,7 +120,7 @@ if(!isset($_SESSION['ROLE'] )) {
 // Database connection
 $conn = new mysqli("localhost", "root", "", "fts") or die ('connection failed');
 // Create the 'proceeds' table if it doesn't exist
-$sql = "CREATE TABLE IF NOT EXISTS major_surgery (
+$sql = "CREATE TABLE IF NOT EXISTS minor_surgery (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
@@ -140,11 +140,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
     $date = $_POST['date'];
     $hospital_id = 1;
     
-    $sql = "SELECT * FROM major_surgery WHERE name ='$name'";
+    $sql = "SELECT * FROM minor_surgery WHERE name ='$name'";
 $result = $conn->query($sql);
     if ($result->num_rows === 0) {
 
-    $sql = "INSERT INTO major_surgery (name, amount, date, hospital_id) VALUES ('$name','$amount','$date', '$hospital_id')";
+    $sql = "INSERT INTO minor_surgery (name, amount, date, hospital_id) VALUES ('$name','$amount','$date', '$hospital_id')";
 
     if ($conn->query($sql) === TRUE) {
         echo '<div class="success-message" id="success-message">record added successfully!</div>';
@@ -153,7 +153,7 @@ $result = $conn->query($sql);
     }
 }else{
 
-    $sql = "UPDATE major_surgery SET amount = '$amount' WHERE name = '$name'";
+    $sql = "UPDATE minor_surgery SET amount = '$amount' WHERE name = '$name'";
     if ($conn->query($sql) === TRUE) {
         echo '<div class="success-message" id="success-message">Name Already exists! Amount updated.</div>';
     }
