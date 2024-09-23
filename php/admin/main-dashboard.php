@@ -50,7 +50,7 @@ if(!isset($_SESSION['ROLE'] )) {
         <ul class="list">
             
           <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="hov itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>Dashboard</a></li>
-          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions()"><i class="fas fa-wallet" id="icon"></i>BUDGET</a>
+          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions()"><i class="fas fa-money-bill" id="icon"></i>BUDGET</a>
                 <ul class="sublist" id="subOptions">
                     <li class="item"><a href="addBudget.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Budget</a></li>
                     <li class="item"><a href="viewBudget.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Budget</a></li>
@@ -67,7 +67,7 @@ if(!isset($_SESSION['ROLE'] )) {
                 </script>
             </li>
           </li>
-          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions2()"><i class="fas fa-product" id="icon"></i>EXPENSES</a>
+          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions2()"><i class="fas fa-coins" id="icon"></i>EXPENSES</a>
                 <ul class="sublist" id="subOptions2">
                     <li class="item"><a href="expense.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Expeses</a></li>
                     <li class="item"><a href="viewExpense.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Expenses</a></li>
@@ -98,7 +98,7 @@ if(!isset($_SESSION['ROLE'] )) {
                 </script>
           </li>
           <li class="item"><a href="\fts\php\hospital\hospital-dashboard.php" class="itemLink"><i class="fas fa-hospital" id="icon"></i>HOSPITALS</a></li>
-          <li class="item"><a href="\fts\php\settings.php" class="itemLink"><i class="fas fa-wrench"></i>SETTINGS</a></li>
+          <li class="item"><a href="\fts\php\settings.php" class="itemLink"><i class="fas fa-wrench" id="icon"></i>SETTINGS</a></li>
           <li class="item"><a href="\fts\php\logout.php" class="itemLink"><i class="fas fa-sign-out-alt" id="icon"></i>LOg Out</a></li>
         </ul>
     </div> 

@@ -65,7 +65,7 @@ if(!isset($_SESSION['ROLE'] )) {
         <ul class="list"> 
             
     <li class="item "><a href="\fts\php\admin\main-dashboard.php" class="itemLink "><i class="fas fa-tachometer-alt" id="icon"></i>Dashboard</a></li>
-    <li class="item"><a href="#" class="hov itemLink" onclick="toggleSubOptions()"><i class="fas fa-product" id="icon"></i>BUDGET</a>
+          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions()"><i class="fas fa-money-bill" id="icon"></i>BUDGET</a>
                 <ul class="sublist" id="subOptions">
                     <li class="item"><a href="\fts\php\admin\addBudget.php" class="hov sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Budget</a></li>
                     <li class="item"><a href="\fts\php\admin\viewBudget.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Budget</a></li>
@@ -82,7 +82,7 @@ if(!isset($_SESSION['ROLE'] )) {
                 </script>
             </li>
           </li>
-          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions2()"><i class="fas fa-product" id="icon"></i>EXPENSES</a>
+          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions2()"><i class="fas fa-coins" id="icon"></i>EXPENSES</a>
                 <ul class="sublist" id="subOptions2">
                     <li class="item"><a href="\fts\php\admin\expense.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Expeses</a></li>
                     <li class="item"><a href="\fts\php\admin\viewExpense.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Expenses</a></li>
@@ -97,7 +97,7 @@ if(!isset($_SESSION['ROLE'] )) {
                     }
                 </script>
           </li>
-          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions3()"><i class="fas fa-product" id="icon"></i>USERS</a>
+          <li class="item"><a href="#" class="itemLink" onclick="toggleSubOptions3()"><i class="fas fa-users" id="icon"></i>USERS</a>
                 <ul class="sublist" id="subOptions3">
                     <li class="item"><a href="\fts\php\admin\addUsers.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Users</a></li>
                     <li class="item"><a href="\fts\php\admin\users.php" class="sublink"><i class="fas fa-eye" id="icon"></i>View Users</a></li>
