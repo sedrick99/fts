@@ -58,6 +58,7 @@ headeR{
     transition: 1.2s;
 }
 .sublist{
+    display: none;
     background: rgb(9, 109, 159);
     height: auto;
     width: 100%;
@@ -148,6 +149,16 @@ i{
 }
 .fa-user:hover .user-box{
     display: block;
+}
+.logout{
+   background-color: white;
+   height: 2rem;
+
+}
+.cancer{
+ font-size: 1rem;
+ background: transparent;
+ margin-left: 5rem;
 }
 
 /*====================================--------SECTION TO BE USED ACROSS THE WHOLE SYSTEM-----=========================================================================*/
@@ -523,7 +534,7 @@ margin: .5rem;
     font-weight: bold;
     color: black;
     width: 100%;
-    text-align: center;
+
 }
 .man h1{
     margin-left: 40%;

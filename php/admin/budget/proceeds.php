@@ -37,6 +37,38 @@ if(!isset($_SESSION['ROLE'] )) {
     .success-message.fade-out {
       opacity: 0;
     }
+
+    .logout{
+        width: 6rem;
+   background-color: white;
+   height: 2rem;
+   border: none;
+   border-radius: 10%;
+
+}
+.cancer{
+ font-size: 1rem;
+ font-weight: bold;
+ border: none;
+ border-radius: 50%;
+ padding: 3px;
+ background: white;
+ position: absolute;
+ right: 2px;
+ top: 2px;
+
+}
+.logout a{
+    text-decoration: none;
+    color: black;
+    font-size: 0.8rem;
+    font-weight: bold;
+    
+}
+.logout:hover{
+    transform: scale(1.09);
+    transition: .5s;
+}
     </style>
 </head>
 

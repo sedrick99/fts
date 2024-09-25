@@ -80,7 +80,7 @@ if(!isset($_SESSION['ROLE'] )) {
                     }
                 </script>
           </li>
-          <li class="item"><a href="#" class="hov itemLink" onclick="toggleSubOptions3()"><i class="fas fa-product" id="icon"></i>USERS</a>
+          <li class="item"><a href="#" class="hov itemLink" onclick="toggleSubOptions3()"><i class="fas fa-users" id="icon"></i>USERS</a>
                 <ul class="sublist" id="subOptions3">
                     <li class="item"><a href="addUsers.php" class="sublink"><i class="fas fa-plus-circle" id="icon"></i>Add Users</a></li>
                     <li class="item"><a href="users.php" class="hov sublink"><i class="fas fa-eye" id="icon"></i>View Users</a></li>
