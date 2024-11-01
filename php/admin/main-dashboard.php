@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "amount.php";
 
 // Check if the user is logged in and has a role set in the session
 if(!isset($_SESSION['ROLE'] )) {
@@ -110,34 +111,42 @@ if(!isset($_SESSION['ROLE'] )) {
                     </div>
                     <div class="box2">
                         <h3 >Overall Budget</h3>
-                        <h1>00</h1>
+                        <h3><?php 
+                        include "amount.php";
+                        echo $totalSum; ?></h3>
                     </div>
             </div>
             <div class="card">
                 <div class="box">
-                    <i class="fas fa-qrcode" id="icon1"></i>
+                    <i class="fas fa-money-bill" id="icon1"></i>
                 </div>
                 <div class="box2">
                     <h3 >Net Budget</h3>
-                    <h1>00</h1>
+                    <h3><?php 
+                        include "amount.php";
+                        echo $totalSum; ?>
+                    </h3>
                 </div>
             </div>
-            <div class="card">
-                <div class="box">
-                    <i class="fas fa-qrcode" id="icon1"></i>
-                </div>
-                <div class="box2">
-                    <h3 >Expenses</h3>
-                    <h1>00</h1>
-                </div>
-        </div>
         <div class="card">
             <div class="box">
                 <i class="fas fa-users" id="icon1"></i>
             </div>
             <div class="box2">
                 <h3 >Users</h3>
-                <h1>00</h1>
+                <h3><?php 
+                        include "../conect.php";
+                        $query = "SELECT COUNT(*) AS total_users FROM users";
+                        $result = $conn->query($query);
+
+                        if ($result) {
+                            $row = $result->fetch_assoc();
+                            $totalUsers = $row['total_users'];
+                        } else {
+                            $totalUsers = 0;
+                        }
+                        echo $totalUsers ?>
+                    </h3>
             </div>
     </div>
     <div class="card">
@@ -151,11 +160,14 @@ if(!isset($_SESSION['ROLE'] )) {
 </div>
 <div class="card">
     <div class="box">
-        <i class="fas fa-list" id="icon1"></i>
+        <i class="fas fa-users" id="icon1"></i>
     </div>
     <div class="box2">
         <h3 >Items</h3>
-        <h1>00</h1>
+        <h3><?php 
+            include "amount.php";
+            echo $totalSum; ?>
+        </h3>
     </div>
 </div>
     </div>

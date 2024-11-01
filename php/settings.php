@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="password" id="new_pass" name="new_pass" required>
 
             <button type="submit">Update</button>
-            <button><a href="\fts\php\admin\main-dashboard.php">Back</a></button>
+            <button><a href="\fts\php\admin\main-dashboard.php>Back</a></button>
         </form>
     </div>
     <script>

@@ -1,11 +1,12 @@
 <?php
-include '../conect.php'; // Your database connection file
+include 'conect.php'; // Your database connection file
 
 $totalSum = 0;
 
 // Array of table names
 $tableNames = [
-    'salaries', 'proceeds', 'contracts', 'donations', 'others',
+'lab', 'cards', 'bedfee', 'delivery', 'gnaecology', 'cd4', 'consultation', 'dentistry', 'pbf', 'phisiotherapy', 
+'iwf', 'echography', 
 
 ];
 
@@ -29,5 +30,5 @@ foreach ($tableNames as $tableName) {
     }
 }
 
-
+echo "The total sum of all amounts is: $totalSum";
 ?>

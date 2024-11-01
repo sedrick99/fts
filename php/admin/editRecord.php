@@ -13,7 +13,7 @@ $id = $_GET['id'];
 
 // Validate the table name to avoid SQL injection
 $validTables = ['salaries', 'proceeds', 'donations','contracts', 'others', 'expenditure', 'materials', 'allowance', 'transport',
-'plough', 'creditors', 'servicesb', 'c_building', 'servicea', 'taxes', 'lab', 'other_exp', 'cards',
+'plough', 'creditors', 'servicesb', 'c_building', 'servicea', 'taxes', 'lab', 'other_exp', 'cards', 'users',
  'depreciation'];
 if (!in_array($tableName, $validTables)) {
     echo "Invalid table specified.";

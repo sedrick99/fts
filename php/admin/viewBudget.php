@@ -179,10 +179,9 @@ function renderTable($conn, $tableName, $title)
         // Render each table
         renderTable($conn, 'salaries', 'Salary');
         renderTable($conn, 'proceeds', 'Proceeds');
-        renderTable($conn, 'contracts', 'Conttracts');
+        renderTable($conn, 'contracts', 'Contracts');
         renderTable($conn, 'donations', 'Donations');
         renderTable($conn, 'others', 'Others');
-        renderTable($conn, 'others1', 'Others1');
         
 
         // Close the connection after all tables are rendered

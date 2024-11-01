@@ -106,19 +106,15 @@ if(!isset($_SESSION['ROLE'] )) {
             <button class="add"><a href="addUsers.php" style="color: white;">Add New Member</a></button>
             </div>
           <div class="main-products">
-            <div class="search">
-                <button type="submit" id="search" class="search-btn"><i class="fas fa-search"></i></button>
-                <input type="text" placeholder="search" class="text-area">
-            </div>
-            <div class="butts">
-                <button class="copy">Copy</button>
-                <button class="copy">CSV</button>
-                <button class="copy">Excel</button>
-                <button class="copy">Print</button>
-                <br>
-                <br>
-                <hr>
-            </div>
+            <?php 
+             echo "
+             <div class='butts'>
+                 <button class='copy' onclick=\"copyTable('users')\">Copy</button>
+                 <button class='copy' onclick=\"exportToExcel(users)\">Excel</button>
+                 <button class='copy' onclick=\"printTable(users)\">Print</button>
+                 <hr>
+             </div>";
+            ?>
             
             <br>
             
@@ -168,7 +164,37 @@ if(!isset($_SESSION['ROLE'] )) {
                 
                   ?>
             </table>
+            <script>
+        function printTable(tableId) {
+            const table = document.getElementById(tableId).outerHTML;
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write('<html><head><title>Print Table</title></head><body>');
+            printWindow.document.write(table);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        }
+
+        function copyTable(tableId) {
+            const table = document.getElementById(tableId);
+            const range = document.createRange();
+            range.selectNode(table);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            alert('Table copied to clipboard');
+        }
+
+        function exportToExcel(tableId) {
+            const table = document.getElementById(tableId);
+            const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+            XLSX.writeFile(wb, `${tableId}.xlsx`);
+            alert("The Excel file has been downloaded. Please open it with Microsoft Excel.");
+        }
+    </script>
 <script>
+    
     // Open edit modal and redirect to edit page
     document.querySelectorAll('.edit-button').forEach(button => {
         button.onclick = function() {
