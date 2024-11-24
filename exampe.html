@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMS</title>
+    <link rel="stylesheet" href="example.css">
+</head>
+<body>
+    <header>
+        <h1>Hospital Management System</h1>
+    </header>
+    <main>
+        <h2>Daily Book</h2>
+        <table id="inventory-table">
+            <thead>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--Inventory items will be dynamic added here-->
+            </tbody>
+        </table>
+        <h2>Add New Item</h2>
+        <form id="add-item-form">
+            <label for="customer-name">Customer's Name</label>
+            <input type="text" id="customer-name" name="customer-name" placeholder="Enter customer's name">
+            <label for="item-name">Item Name:</label>
+            <input type="text" id="item-name" name="item-name" placeholder="Enter item name">
+            <label for="item-quantity">Quantity:</label>
+            <input type="number" name="item-quantity" id="item-quantity" placeholder="Enter quantity">
+            <label for="item-price">Price:</label>
+            <input type="number" id="item-price" name="item-price" placeholder="Enter Price">
+            <button type="submit">Add Item</button>
+        </form>
+    </main>
+    <script>
+        let inventoryItems = JSON.parse(localStorage.getItem('inventoryItems')) || [];
+        inventoryItems.forEach((item) =>{
+            const newRow = inventoryTable.insertRow(-1);
+            newRow.insertCell(0).textcontent = customer.name;
+            newRow.insertCell(1).textcontent = item.name;
+            newRow.insertCell(2).textcontent = item.quantity;
+            newRow.insertCell(3).textcontent = item.price;
+            newRow.insertCell(4).innerHTML = '<button>Edit</button><button>delete</button>';
+        }
+    );
+    addItemForm.addEventListener('submit', (event) =>{
+        event.preventDefault();
+            //Get the form data
+            const customerName = document.getElementById('customer-name').value
+            const itemName = document.getElementById('item-name').value;
+            const itemQuantity = document.getElementById('item-quantity').value;
+            const itemPrice = document.getElementById('item-price').value;
+           //create a new row for the inventory table
+           const newItem = {
+            name:customerName, name:itemName, quantity:itemQuantity, price:itemPrice
+           };
+           inventoryItems.push(newItem);
+           localStorage.setItem('inventoryItems', JSON.stringify(inventoryItems));
+           const newRow = inventoryTable.insertRow(-1);
+            newRow.insertCell(0).textcontent = customerName;
+            newRow.insertCell(1).textcontent = itemName;
+            newRow.insertCell(2).textcontent = itemQuantity;
+            newRow.insertCell(3).textcontent = itemPrice;
+            newRow.insertCell(4).innerHTML = '<button>Edit</button><button>delete</button>';
+            //clear the form fields
+            document.getElementById('customer-name').value ='',
+            document.getElementById('item-name').value ='',
+            document.getElementById('item-quantity').value ='',
+            document.getElementById('item-price').value ='';
+    }
+);
+        // Javascript code to manage the inventory items
+      //  const inventoryTable = document.getElementById( 'inventory-table' );
+        //const addItemForm = document.getElementById('add-item-form');
+        //add event listener to the form
+
+    </script>
+</body>
+</html>
