@@ -1,0 +1,36 @@
+Body {
+    Font-family: Arial, sans-serif;
+    Margin: 0;
+    Padding: 20px;
+    Background-color: #f4f4f4;
+}
+
+H2 {
+    Color: #333;
+}
+
+Form {
+    Background: #fff;
+    Padding: 20px;
+    Border-radius: 5px;
+    Box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+Input {
+    Display: block;
+    Margin: 10px 0;
+    Padding: 10px;
+    Width: 100%;
+}
+
+Button {
+    Padding: 10px;
+    Background-color: #5cb85c;
+    Color: white;
+    Border: none;
+    Cursor: pointer;
+}
+
+Button:hover {
+    Background-color: #4cae4c;
+}

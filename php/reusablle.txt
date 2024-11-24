@@ -1,0 +1,35 @@
+ <?php
+//  include 'conect.php';
+ if(isset($_POST['submit'])){
+    $search = $_POST['search'];
+    // $sql = "select * from items where id like '%$search%' or name like '%$search%'";
+    $sql = "SELECT * FROM items";
+    $result = mysqli_query($conn, $sql);
+    if($result){
+        if(mysqli_num_rows($result)>0){
+            while($row = $result->fetch_assoc()) {
+                $quantity = $row['p_quantity'];
+                $id = $row['id'];
+                echo'
+                <tbody>
+                <tr class="row">
+                    <td>'.$row['name'].'</td>
+                    <td>'.$row['price'].'</td>
+                    <td>'.$row['quantity'].'</td>
+                    <td>'.$row['date'].'</td>
+                    <td>'.$row['time'].'</td>
+                    <td>'.$row['exdate'].'</td>'
+                    ?>
+                     <?php if($_SESSION['ROLE'] == 'admin' || $_SESSION['ROLE'] == 'mananger' ) {
+               echo'
+               <button id="edit"><a href="viewstock.php?edit='.$row['id'].'" class="edit">edit</a></button>
+               <button id="del"><a href="viewstock.php?delete='.$row['id'].'" class="delete" onclick="return confirm(\'Do you really want to delete this product?\');">delete</a></button>';
+                   
+                     } ?>
+                    <?php
+                    echo'
+                </td>
+                    </tr>
+            </tbody>
+               ';
+            }
