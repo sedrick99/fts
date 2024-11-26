@@ -94,7 +94,7 @@ if(!isset($_SESSION['ROLE'] )) {
             <label for="name">service Name</label>
             <input type="text" id="name" name="name" placeholder="Enter customer name" required>
             <label for="amount">Amount</label>
-            <input type="number" id="amount" name="amount" placeholder="Enter card price" required>
+            <input type="number" id="amount" name="amount" placeholder="Enter Amount" required>
             <label for="date">Date</label>
             <input type="datetime-local" id="date" name="date" required>
             <button type="submit" name="add">Add</button>
