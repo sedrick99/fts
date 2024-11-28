@@ -98,13 +98,17 @@ if(!isset($_SESSION['ROLE'] )) {
       <h1 class="sal"><a href="records\bedfee.php">BED FEE</a></h1>
       <h1 class="sal"><a href="records\echo.php">ECHOGRAPHY</a></h1>
       <h1 class="sal"><a href="records\physio.php">PHYSIOTHERAPY</h1>
-      <h1 class="sal"><a href="records\minor.php">SURGERY</a></h1>
-      <h1 class="sal"><a href="records\major.php">CARDIOLOGY</a></h1>
+      <h1 class="sal"><a href="records\surgery.php">SURGERY</a></h1>
+      <h1 class="sal"><a href="records\cardiology.php">CARDIOLOGY</a></h1>
       <h1 class="sal"><a href="records\gynae.php">GYNAECOLOGY</a></h1>
       <h1 class="sal"><a href="records\dentistry.php">DENTISTRY</a></h1>
-      <h1 class="sal"><a href="records\cd4.php">OPTHAMOLOGIST</a></h1>
+      <h1 class="sal"><a href="records\opthamo.php">OPTHAMOLOGIST</a></h1>
       <h1 class="sal"><a href="records\pbf.php">PBF</a></h1>
+<<<<<<< HEAD
       <h1 class="sal"><a href="records\pbf.php">PAEDIATRICS</a></h1>
+=======
+      <h1 class="sal"><a href="records\paediatrics.php">PAEDIATRICS</a></h1>
+>>>>>>> 2ffa24dc7c3031ed30438ee4f6317d001685fdb5
       <h1 class="sal"><a href="records\dressing.php">DRESSING</a></h1>
      </div>
     </section>

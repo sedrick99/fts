@@ -22,7 +22,7 @@ if(!isset($_SESSION['ROLE'] )) {
 
 <body>
     <nav class="horizontal">
-    <header>St. KIZITO HEALTH CENTER</header>
+    <header>St. ZELIE AND LOUIS MEDICAL CENTER</header>
         <i class="fas fa-user" id="usser"  onclick="displayLog()"></i>
 
     <div class="user-box">
@@ -90,15 +90,11 @@ if(!isset($_SESSION['ROLE'] )) {
     <div class="case">
     <div class="main-products">
         <form class="man" method="post">
-            <h1>Add Purchase</h1>
-            <label for="name">Purchase Name</label>
+            <h1>Add Wages</h1>
+            <label for="name">wage Name</label>
             <input type="text" id="name" name="name" placeholder="Enter item name" required>
             <label for="amount">Amount</label>
-<<<<<<< HEAD
-            <input type="number" id="amount" name="amount" placeholder="Enter card price" required>
-=======
             <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
->>>>>>> 2ffa24dc7c3031ed30438ee4f6317d001685fdb5
             <label for="date">Date</label>
             <input type="datetime-local" id="date" name="date" required>
             <button type="submit" name="add">Add</button>
@@ -124,7 +120,7 @@ if(!isset($_SESSION['ROLE'] )) {
 // Database connection
 $conn = new mysqli("localhost", "root", "", "fts") or die ('connection failed');
 // Create the 'proceeds' table if it doesn't exist
-$sql = "CREATE TABLE IF NOT EXISTS purchases (
+$sql = "CREATE TABLE IF NOT EXISTS wages (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
@@ -144,11 +140,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
     $date = $_POST['date'];
     $hospital_id = 1;
     
-    $sql = "SELECT * FROM purchases WHERE name ='$name'";
+    $sql = "SELECT * FROM wages WHERE name ='$name'";
 $result = $conn->query($sql);
     if ($result->num_rows === 0) {
 
-    $sql = "INSERT INTO purchases (name, amount, date, hospital_id) VALUES ('$name','$amount','$date', '$hospital_id')";
+    $sql = "INSERT INTO wages (name, amount, date, hospital_id) VALUES ('$name','$amount','$date', '$hospital_id')";
 
     if ($conn->query($sql) === TRUE) {
         echo '<div class="success-message" id="success-message">record added successfully!</div>';
@@ -157,7 +153,7 @@ $result = $conn->query($sql);
     }
 }else{
 
-    $stmt = $conn->prepare("UPDATE purchases SET amount = amount + ? WHERE name = ?");
+    $stmt = $conn->prepare("UPDATE wages SET amount = amount + ? WHERE name = ?");
     $stmt->bind_param("is", $amount, $name);
     $stmt->execute();
     if ($conn->query($sql) === TRUE) {

@@ -22,7 +22,7 @@ if(!isset($_SESSION['ROLE'] )) {
 
 <body>
     <nav class="horizontal">
-    <header>St. KIZITO HEALTH CENTER</header>
+    <header>CENTRE DE STE. THERESE PK 10</header>
         <i class="fas fa-user" id="usser"  onclick="displayLog()"></i>
 
     <div class="user-box">
@@ -94,11 +94,7 @@ if(!isset($_SESSION['ROLE'] )) {
             <label for="name">Purchase Name</label>
             <input type="text" id="name" name="name" placeholder="Enter item name" required>
             <label for="amount">Amount</label>
-<<<<<<< HEAD
-            <input type="number" id="amount" name="amount" placeholder="Enter card price" required>
-=======
             <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
->>>>>>> 2ffa24dc7c3031ed30438ee4f6317d001685fdb5
             <label for="date">Date</label>
             <input type="datetime-local" id="date" name="date" required>
             <button type="submit" name="add">Add</button>
