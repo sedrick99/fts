@@ -89,24 +89,6 @@ if(!isset($_SESSION['ROLE'] )) {
     <section>
         <div class="cards">
             <div class="card">
-                    <div class="box">
-                        <i class="fas fa-money-bill" id="icon1"></i>
-                    </div>
-                    <div class="box2">
-                        <h3 >Overall Budget</h3>
-                        <h1>00</h1>
-                    </div>
-            </div>
-            <div class="card">
-                <div class="box">
-                    <i class="fas fa-qrcode" id="icon1"></i>
-                </div>
-                <div class="box2">
-                    <h3 >Net Budget</h3>
-                    <h1>00</h1>
-                </div>
-            </div>
-            <div class="card">
                 <div class="box">
                     <i class="fas fa-qrcode" id="icon1"></i>
                 </div>

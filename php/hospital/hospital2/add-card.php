@@ -105,7 +105,7 @@ if(!isset($_SESSION['ROLE'] )) {
       <h1 class="sal"><a href="records\cd4.php">OPTHAMOLOGIST</a></h1>
       <h1 class="sal"><a href="records\pbf.php">PBF</a></h1>
       <h1 class="sal"><a href="records\pbf.php">PAEDIATRICS</a></h1>
-      <h1 class="sal"><a href="records\pbf.php">DRESSING</a></h1>
+      <h1 class="sal"><a href="records\dressing.php">DRESSING</a></h1>
      </div>
     </section>
 

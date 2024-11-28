@@ -99,13 +99,8 @@ if(!isset($_SESSION['ROLE'] )) {
       <h1 class="sal"><a href="records\bedfee.php">BED FEE</a></h1>
       <h1 class="sal"><a href="records\echo.php">ECHOGRAPHY</a></h1>
       <h1 class="sal"><a href="records\physio.php">PHYSIOTHERAPY</h1>
-<<<<<<< HEAD
-      <h1 class="sal"><a href="records\minor-surgery.php">MINOR SURGERY</a></h1>
-      <h1 class="sal"><a href="records\major-surgery.php">MAJOR SURGERY</a></h1>
-=======
       <h1 class="sal"><a href="records\minor.php">MINOR SURGERY</a></h1>
       <h1 class="sal"><a href="records\major.php">MAJOR SURGERY</a></h1>
->>>>>>> cdaf3fbd7d47810e963f9dce851dea12b5454158
       <h1 class="sal"><a href="records\gynae.php">GYNAECOLOGY</a></h1>
       <h1 class="sal"><a href="records\dentistry.php">DENTISTRY</a></h1>
       <h1 class="sal"><a href="records\cd4.php">CD4</a></h1>

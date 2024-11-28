@@ -137,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
     $name = $_POST['name'];
     $amount = $_POST['amount'];
     $date = $_POST['date'];
-    $hospital_id = 1;
+    $hospital_id = 4;
     
     $sql = "SELECT * FROM iwf WHERE name ='$name'";
 $result = $conn->query($sql);
