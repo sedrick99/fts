@@ -22,7 +22,7 @@ if(!isset($_SESSION['ROLE'] )) {
 
 <body>
     <nav class="horizontal">
-    <header>St. KIZITO HEALTH CENTER</header>
+    <header>St. THERESE MEDICAL CENTER</header>
         <i class="fas fa-user" id="usser"  onclick="displayLog()"></i>
 
     <div class="user-box">
@@ -92,7 +92,7 @@ if(!isset($_SESSION['ROLE'] )) {
         <form class="man" method="post">
             <h1>Add Purchase</h1>
             <label for="name">Purchase Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter item name" required>
+            <input type="text" id="name" name="name" placeholder="Enter customer name" required>
             <label for="amount">Amount</label>
             <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
             <label for="date">Date</label>

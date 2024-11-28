@@ -96,16 +96,16 @@ if(!isset($_SESSION['ROLE'] )) {
       <h1 class="sal"><a href="records\anc.php">ANC</a></h1>
       <h1 class="sal"><a href="records\iwf.php">IWF</a></h1>
       <h1 class="sal"><a href="records\bedfee.php">BED FEE</a></h1>
-      <h1 class="sal"><a href="records\bedfee.php">NURSNG CARE</a></h1>
+      <h1 class="sal"><a href="records\nursing.php">NURSNG CARE</a></h1>
       <h1 class="sal"><a href="records\echo.php">ECHOGRAPHY</a></h1>
       <h1 class="sal"><a href="records\physio.php">PHYSIOTHERAPY</h1>
-      <h1 class="sal"><a href="records\minor.php">SURGERY</a></h1>
-      <h1 class="sal"><a href="records\major.php">SPECIALTY CONSULTATION</a></h1>
-      <h1 class="sal"><a href="records\gynae.php">DRESSING</a></h1>
-      <h1 class="sal"><a href="records\dentistry.php">USERS FEE</a></h1>
+      <h1 class="sal"><a href="records\surgery.php">SURGERY</a></h1>
+      <h1 class="sal"><a href="records\spcon.php">SPECIALTY CONSULTATION</a></h1>
+      <h1 class="sal"><a href="records\dressing.php">DRESSING</a></h1>
+      <h1 class="sal"><a href="records\users.php">USERS FEE</a></h1>
       <h1 class="sal"><a href="records\cd4.php">CD4</a></h1>
-      <h1 class="sal"><a href="records\pbf.php">DENTISTRY</a></h1>
-      <h1 class="sal"><a href="records\bedfee.php">PBF MONEY RECIEVED</a></h1>
+      <h1 class="sal"><a href="records\dentistry.php">DENTISTRY</a></h1>
+      <h1 class="sal"><a href="records\pbf.php">PBF MONEY RECIEVED</a></h1>
      </div>
     </section>
 
