@@ -58,7 +58,7 @@ if(!isset($_SESSION['ROLE'])) {
             <li class="item"><a href="hospital1\kizito.php" class="itemLink"></i>St.KIZITO</a></li>
             <li class="item"><a href="hospital2\therese.php" class="itemLink"></i>St. THERESE</a></li>
             <li class="item"><a href="hospital3\zelie.php" class="itemLink">St. ZELIE & LOUIS</a></li>
-            <li class="item"><a href="hospital4\healthCenter.php" class="itemLink">hospital4</a></li>
+            <li class="item"><a href="hospital4\healthCenter.php" class="itemLink">CENTRE DE STE. THERESE PK 10</a></li>
             <li class="item"><a href="\fts\php\logout.php" class="itemLink"></li>
 
         </ul>
